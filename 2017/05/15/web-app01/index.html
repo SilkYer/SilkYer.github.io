@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>Vue2.0仿外卖APP（一） | SilkYer&#39;s Blog | Write the code , Change the world</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="最近在学习慕课网的课程：用vue.js做一个仿饿了么外卖APP的项目，现在也把流程啊什么的暂时先整理一下在这个博客上面。 当然，这个过程会有点长，不过确实能学到很多东西。 话不多说，马上开始吧。 注：当我们把用vue-cli脚手架搭建成的vue项目复制到其他地方时，要把node_modules目录删除，不然在其他地方无法执行cnpm run dev，这其中设计到路径的问题。删除之后要重新cnpm">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vue2.0仿外卖APP（一）">
+<meta property="og:url" content="https://silkyer.github.io/2017/05/15/web-app01/index.html">
+<meta property="og:site_name" content="SilkYer&#39;s Blog">
+<meta property="og:description" content="最近在学习慕课网的课程：用vue.js做一个仿饿了么外卖APP的项目，现在也把流程啊什么的暂时先整理一下在这个博客上面。 当然，这个过程会有点长，不过确实能学到很多东西。 话不多说，马上开始吧。 注：当我们把用vue-cli脚手架搭建成的vue项目复制到其他地方时，要把node_modules目录删除，不然在其他地方无法执行cnpm run dev，这其中设计到路径的问题。删除之后要重新cnpm">
+<meta property="og:image" content="http://opolpcrco.bkt.clouddn.com/17-5-15/7937415-file_1494862122245_c931.png">
+<meta property="og:image" content="http://opolpcrco.bkt.clouddn.com/17-5-15/20491526-file_1494862564539_6edb.png">
+<meta property="og:updated_time" content="2017-05-15T15:38:03.857Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Vue2.0仿外卖APP（一）">
+<meta name="twitter:description" content="最近在学习慕课网的课程：用vue.js做一个仿饿了么外卖APP的项目，现在也把流程啊什么的暂时先整理一下在这个博客上面。 当然，这个过程会有点长，不过确实能学到很多东西。 话不多说，马上开始吧。 注：当我们把用vue-cli脚手架搭建成的vue项目复制到其他地方时，要把node_modules目录删除，不然在其他地方无法执行cnpm run dev，这其中设计到路径的问题。删除之后要重新cnpm">
+<meta name="twitter:image" content="http://opolpcrco.bkt.clouddn.com/17-5-15/7937415-file_1494862122245_c931.png">
+    
+        <link rel="alternate" type="application/atom+xml" title="SilkYer&#39;s Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">SilkYer</h5>
+          <a href="mailto:fpx1100@gmail.com" title="fpx1100@gmail.com" class="mail">fpx1100@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                文章
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/silkyer" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/silkyer" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/custom"  >
+                <i class="icon icon-lg icon-link"></i>
+                测试
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Vue2.0仿外卖APP（一）</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Vue2.0仿外卖APP（一）</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-05-15T15:19:24.724Z" itemprop="datePublished" class="page-time">
+  2017-05-15
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-项目介绍"><span class="post-toc-number">1.</span> <span class="post-toc-text">1.项目介绍</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#项目开发的一个完整流程"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">项目开发的一个完整流程</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#所需技术："><span class="post-toc-number">1.2.</span> <span class="post-toc-text">所需技术：</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#第三方组件："><span class="post-toc-number">1.3.</span> <span class="post-toc-text">第三方组件：</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#关于Vue的数据驱动思想"><span class="post-toc-number">2.</span> <span class="post-toc-text">关于Vue的数据驱动思想</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-web-app01"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Vue2.0仿外卖APP（一）</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-05-15 23:19:24" datetime="2017-05-15T15:19:24.724Z"  itemprop="datePublished">2017-05-15</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>最近在学习慕课网的课程：用vue.js做一个仿饿了么外卖APP的项目，现在也把流程啊什么的暂时先整理一下在这个博客上面。</p>
+<p>当然，这个过程会有点长，不过确实能学到很多东西。</p>
+<p>话不多说，马上开始吧。</p>
+<p>注：当我们把用vue-cli脚手架搭建成的vue项目复制到其他地方时，要把node_modules目录删除，不然在其他地方无法执行cnpm run dev，这其中设计到路径的问题。删除之后要重新cnpm install。</p>
+<blockquote>
+<p><a href="https://segmentfault.com/q/1010000006912664" target="_blank" rel="external">https://segmentfault.com/q/1010000006912664</a></p>
+<p><a href="https://www.zhihu.com/question/41409670?sort=created" target="_blank" rel="external">https://www.zhihu.com/question/41409670?sort=created</a></p>
+</blockquote>
+<h2 id="1-项目介绍"><a href="#1-项目介绍" class="headerlink" title="1.项目介绍"></a>1.项目介绍</h2><p>选用当前最火的MVVM框架作为这个项目的技术栈<br>MVVM架构：<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://opolpcrco.bkt.clouddn.com/17-5-15/7937415-file_1494862122245_c931.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure></p>
+<p>View和model通过viewModel来通信，但数据发生变化，viewmodel能够观察到这种数据的变化，然后通知到对应的视图做自动更新；当用户操作view视图，viewModel也能监听到视图的变化，然后通知数据做改动，实现了数据的双向绑定。</p>
+<p>应用场景：</p>
+<p>针对具有复杂交互逻辑的前端应用；</p>
+<p>它可以提供基础的架构抽象；</p>
+<p>可以通过AJAX数据持久化，保证前端用户体验</p>
+<p>好处：</p>
+<p>当前端和数据做一些操作的时候，可以通过AJAX请求对后端做数据持久化，不需要刷新整个页面，只需要改动DOM里需要改动的那部分数据。特别是移动端应用场景，刷新页面太昂贵，会重新加载很多资源，虽然有些会被缓存，但是页面的DOM,JS,CSS都会被页面重新解析一遍，因此移动端页面通常会做出SPA单页应用。</p>
+<p>该项目只提取饿了么其中一个模块–商家模块进行开发</p>
+<h3 id="项目开发的一个完整流程"><a href="#项目开发的一个完整流程" class="headerlink" title="项目开发的一个完整流程"></a>项目开发的一个完整流程</h3><p>项目的需求分析–脚手架工具–数据mock–架构设计–代码编写–自测–编译打包等方面完全简讲述开发一个web的全流程，更好地了解一个项目从0到1的过程。</p>
+<h3 id="所需技术："><a href="#所需技术：" class="headerlink" title="所需技术："></a>所需技术：</h3><p>项目完整的开发流程；组件化、模块化的开发模式；使用Vue-cli脚手架初始化Vue.js项目；webpack的打包原理；模拟json后端数据，前后端分离开发；es6+eslint的开发方式。</p>
+<h3 id="第三方组件："><a href="#第三方组件：" class="headerlink" title="第三方组件："></a>第三方组件：</h3><p>使用stylus编写模块化的CSS；使用vue-router开发单页应用；使用vue-resource与后端数据交互；在Vue.js框架里和第三方JS插件交互。</p>
+<h2 id="关于Vue的数据驱动思想"><a href="#关于Vue的数据驱动思想" class="headerlink" title="关于Vue的数据驱动思想"></a>关于Vue的数据驱动思想</h2><p>在数据驱动的思想里，数据驱动DOM变化，DOM是数据的一种自然映射。<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://opolpcrco.bkt.clouddn.com/17-5-15/20491526-file_1494862564539_6edb.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure><br>如果没有MVVM框架，数据和视图是如何交互的？</p>
+<p>比如通过AJAX从后端获取数据，会让视图改变，通过手动触发DOM的改变；再比如我们通过前端交互改变一些数据，为了让视图也发生变化，仍然需要通过手动触发进行DOM改变。手动改变DOM不仅繁琐，还容易出错。用了vue之后就可以省去操作DOM变化的步骤了。</p>
+<p>在vue.js中，可以通过directives指令去对DOM做一层封装，当数据发生变化，会通知指令去修改对应的DOM。</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-05-15T15:38:03.857Z" itemprop="dateUpdated">2017-05-15 23:38:03</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2017/05/15/web-app01/" target="_blank" rel="external">https://silkyer.github.io/2017/05/15/web-app01/</a>
+        
+    </div>
+    <footer>
+        <a href="https://silkyer.github.io">
+            <img src="/img/avatar.jpg" alt="SilkYer">
+            SilkYer
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://silkyer.github.io/2017/05/15/web-app01/&title=《Vue2.0仿外卖APP（一）》 — SilkYer's Blog&pic=https://silkyer.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://silkyer.github.io/2017/05/15/web-app01/&title=《Vue2.0仿外卖APP（一）》 — SilkYer's Blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://silkyer.github.io/2017/05/15/web-app01/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Vue2.0仿外卖APP（一）》 — SilkYer's Blog&url=https://silkyer.github.io/2017/05/15/web-app01/&via=https://silkyer.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://silkyer.github.io/2017/05/15/web-app01/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/05/13/hello-world/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Hello World</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+
+        
+    </ul>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p>
+            <span>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></span>
+            <span>SilkYer &copy; 2015 - 2017</span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://silkyer.github.io/2017/05/15/web-app01/&title=《Vue2.0仿外卖APP（一）》 — SilkYer's Blog&pic=https://silkyer.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://silkyer.github.io/2017/05/15/web-app01/&title=《Vue2.0仿外卖APP（一）》 — SilkYer's Blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://silkyer.github.io/2017/05/15/web-app01/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Vue2.0仿外卖APP（一）》 — SilkYer's Blog&url=https://silkyer.github.io/2017/05/15/web-app01/&via=https://silkyer.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://silkyer.github.io/2017/05/15/web-app01/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://silkyer.github.io/2017/05/15/web-app01/" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '不喜欢我了吗！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

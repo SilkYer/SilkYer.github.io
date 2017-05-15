@@ -29,7 +29,7 @@
     
         <link rel="alternate" type="application/atom+xml" title="SilkYer&#39;s Blog" href="/atom.xml">
     
-    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="shortcut icon" href="/img/favicon.ico">
     <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
     <script>window.lazyScripts=[]</script>
 </head>
@@ -49,7 +49,7 @@
         </a>
         <hgroup class="introduce">
           <h5 class="nickname">SilkYer</h5>
-          <a href="mailto:634206017@qq.com" title="634206017@qq.com" class="mail">634206017@qq.com</a>
+          <a href="mailto:fpx1100@gmail.com" title="fpx1100@gmail.com" class="mail">fpx1100@gmail.com</a>
         </hgroup>
       </div>
     </div>
@@ -66,7 +66,7 @@
             <li class="waves-block waves-effect">
               <a href="/archives"  >
                 <i class="icon icon-lg icon-archives"></i>
-                Archives
+                文章
               </a>
             </li>
         
@@ -85,14 +85,14 @@
             </li>
         
             <li class="waves-block waves-effect">
-              <a href="https://github.com/yscoder" target="_blank" >
+              <a href="https://github.com/silkyer" target="_blank" >
                 <i class="icon icon-lg icon-github"></i>
                 Github
               </a>
             </li>
         
             <li class="waves-block waves-effect">
-              <a href="http://www.weibo.com/ysweb" target="_blank" >
+              <a href="http://www.weibo.com/silkyer" target="_blank" >
                 <i class="icon icon-lg icon-weibo"></i>
                 Weibo
               </a>
@@ -154,6 +154,50 @@
 <div class="container body-wrap">
 
     <ul class="post-list">
+    
+        <li class="post-list-item fade">
+            <article id="post-web-app01"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2017-05-15 23:19:24" datetime="2017-05-15T15:19:24.724Z"  itemprop="datePublished">2017-05-15</time>
+
+        
+
+
+        
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/05/15/web-app01/">Vue2.0仿外卖APP（一）</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        最近在学习慕课网的课程：用vue.js做一个仿饿了么外卖APP的项目，现在也把流程啊什么的暂时先整理一下在这个博客上面。
+当然，这个过程会有点长，不过确实能学到很多东西。
+话不多说，马上开始吧。
+注：当我们把用vue-cli脚手架搭建成的vue项目复制到其他地方时，要把node_modules目录删除，不然在其他地方无法执行cnpm run dev，这其中设计到路径的问题。删除之后要重新cn...
+    
+
+        <a href="/2017/05/15/web-app01/" class="post-more waves-effect waves-button">
+            阅读全文…
+        </a>
+    </div>
+    
+</article>
+
+        </li>
     
         <li class="post-list-item fade">
             <article id="post-hello-world"
@@ -326,10 +370,10 @@ var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
     var OriginTitile = document.title, titleTime;
     document.addEventListener('visibilitychange', function() {
         if (document.hidden) {
-            document.title = '死鬼去哪里了！';
+            document.title = '不喜欢我了吗！';
             clearTimeout(titleTime);
         } else {
-            document.title = '(つェ⊂)咦!又好了!';
+            document.title = '';
             titleTime = setTimeout(function() {
                 document.title = OriginTitile;
             },2000);
