@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>Vue2.0仿外卖APP（三） | SilkYer&#39;s Blog | Write the code , Change the world</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="APP结构如下:">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vue2.0仿外卖APP（三）">
+<meta property="og:url" content="https://silkyer.github.io/2017/05/16/web-app03/index.html">
+<meta property="og:site_name" content="SilkYer&#39;s Blog">
+<meta property="og:description" content="APP结构如下:">
+<meta property="og:image" content="http://opolpcrco.bkt.clouddn.com/17-5-16/63895726-file_1494929641181_94fe.jpg">
+<meta property="og:image" content="http://opolpcrco.bkt.clouddn.com/17-5-16/70823900-file_1494929641368_a94b.jpg">
+<meta property="og:image" content="http://opolpcrco.bkt.clouddn.com/17-5-16/48455974-file_1494929641511_39ed.jpg">
+<meta property="og:image" content="http://opolpcrco.bkt.clouddn.com/17-5-16/70858233-file_1494929740581_12fd8.png">
+<meta property="og:image" content="http://opolpcrco.bkt.clouddn.com/17-5-16/94710955-file_1494929781060_69d6.png">
+<meta property="og:image" content="http://opolpcrco.bkt.clouddn.com/17-5-16/40072671-file_1494929832340_7438.png">
+<meta property="og:image" content="http://opolpcrco.bkt.clouddn.com/17-5-16/96312509-file_1494930527681_144f1.png">
+<meta property="og:image" content="http://opolpcrco.bkt.clouddn.com/17-5-16/76637291-file_1494930638800_17dac.png">
+<meta property="og:updated_time" content="2017-05-16T10:30:51.074Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Vue2.0仿外卖APP（三）">
+<meta name="twitter:description" content="APP结构如下:">
+<meta name="twitter:image" content="http://opolpcrco.bkt.clouddn.com/17-5-16/63895726-file_1494929641181_94fe.jpg">
+    
+        <link rel="alternate" type="application/atom+xml" title="SilkYer&#39;s Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">SilkYer</h5>
+          <a href="mailto:fpx1100@gmail.com" title="fpx1100@gmail.com" class="mail">fpx1100@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                文章
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/silkyer" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/silkyer" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/custom"  >
+                <i class="icon icon-lg icon-link"></i>
+                测试
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Vue2.0仿外卖APP（三）</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Vue2.0仿外卖APP（三）</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-05-16T10:12:00.256Z" itemprop="datePublished" class="page-time">
+  2017-05-16
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#APP结构如下"><span class="post-toc-number">1.</span> <span class="post-toc-text">APP结构如下:</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#项目资源准备"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">项目资源准备</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#图标字体制作"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">图标字体制作</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#项目目录设计"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">项目目录设计</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#mock数据（模拟后台数据）"><span class="post-toc-number">2.</span> <span class="post-toc-text">mock数据（模拟后台数据）</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-web-app03"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Vue2.0仿外卖APP（三）</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-05-16 18:12:00" datetime="2017-05-16T10:12:00.256Z"  itemprop="datePublished">2017-05-16</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h2 id="APP结构如下"><a href="#APP结构如下" class="headerlink" title="APP结构如下:"></a>APP结构如下:</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://opolpcrco.bkt.clouddn.com/17-5-16/63895726-file_1494929641181_94fe.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://opolpcrco.bkt.clouddn.com/17-5-16/70823900-file_1494929641368_a94b.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://opolpcrco.bkt.clouddn.com/17-5-16/48455974-file_1494929641511_39ed.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<h3 id="项目资源准备"><a href="#项目资源准备" class="headerlink" title="项目资源准备"></a>项目资源准备</h3><p>准备项目的各种图片资源等等</p>
+<p>注意：在webpack可以不用css sprite，直接用单张图片，因为它会帮忙打包。</p>
+<p>还有SVG图片，放大之后不会影响质量，在移动端开发中，通常会把色彩单一的图片做成SVG图片。这些不是直接用，利用一些工具去把这些SVG图片去转化成一个叫图标字体的文件，就可以在CSS引用了。</p>
+<h3 id="图标字体制作"><a href="#图标字体制作" class="headerlink" title="图标字体制作"></a>图标字体制作</h3><p>在项目开发前期，我们需要将设计师给的一些图片制作成字体图标</p>
+<p>用一个叫IcoMoon的工具（<a href="https://icomoon.io/），它本身有的图标可以查看IcoMoon" target="_blank" rel="external">https://icomoon.io/），它本身有的图标可以查看IcoMoon</a> App，要用自定义图标的话可以在IcoMoon App里面点击Import Icons，将所有的SVG图片导入，就可以下载使用了。（里面的Get Code可以查看使用方法）。在下载之前可以点击左上角的preferences，设置一下名称：sell-icon</p>
+<h3 id="项目目录设计"><a href="#项目目录设计" class="headerlink" title="项目目录设计"></a>项目目录设计</h3><p>所有代码都在src文件目录下</p>
+<p>入口文件main.js；</p>
+<p>整个页面的vue实例文件App.vue；</p>
+<p>components：存放我们的组件文件，但我们不会像hello.vue一样直接放在里面，我们会多件一个子目录，像这样：<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://opolpcrco.bkt.clouddn.com/17-5-16/70858233-file_1494929740581_12fd8.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure></p>
+<p>这样做是因为一个vue组件除了它的.vue文件以外，还可能包含一个图片相关资源等等。之前说过，组件一个很重要的设计原则就是就近维护，把一个组件相关资源都放在一个目录下。</p>
+<p>还要创建一个common目录，包好一个公共的模块和资源，再在它其中添加三个子目录。</p>
+<p>在这儿项目中，我们使用的css预处理器是stylus。</p>
+<p>结构如下图：<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://opolpcrco.bkt.clouddn.com/17-5-16/94710955-file_1494929781060_69d6.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure><br>并且将图标字体生成的style.css添加到stylus目录下，并改名为icon.styl，并改为stylus语法：把括号和分号去掉。</p>
+<p>把asset目录删掉。</p>
+<h2 id="mock数据（模拟后台数据）"><a href="#mock数据（模拟后台数据）" class="headerlink" title="mock数据（模拟后台数据）"></a>mock数据（模拟后台数据）</h2><p>作为前端经常需要模拟后台数据，我们称之为mock。</p>
+<p><a href="http://blog.csdn.net/sysuzjz/article/details/50317531" target="_blank" rel="external">http://blog.csdn.net/sysuzjz/article/details/50317531</a></p>
+<p>mock 的真正意义在于简化测试环境。假如你现在要测试一个dao，但是你有不想构建数据库环境就可以用mock模拟数据库的返回结果。</p>
+<p>数据来源：data.json<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://opolpcrco.bkt.clouddn.com/17-5-16/40072671-file_1494929832340_7438.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure></p>
+<p>我们模拟的数据请求就是从这里面读取数据，接下来就来编写这些接口。</p>
+<p>打开build目录-dev-server.js（就是我们开发的webpack打包的一个入口文件），打开之后使用express这个框架去指一个nodeserver，我们也可以用express-router来编写这些接口请求。</p>
+<p>先拿到这些数据(data.json)：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var appData = require(<span class="string">'../data.json'</span>);</div><div class="line">var seller = appData.seller;</div><div class="line">var goods = appData.goods;</div><div class="line">var ratings = appData.ratings;</div></pre></td></tr></table></figure></p>
+<p>编写路由，并编写接口：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">var apiRoutes = express.Router();</div><div class="line"></div><div class="line">apiRoutes.get(<span class="string">'/seller'</span>, <span class="keyword">function</span> (req, res) &#123;</div><div class="line">  res.json(&#123;</div><div class="line">    errno: 0,</div><div class="line">    data: seller</div><div class="line">  &#125;);</div><div class="line">&#125;);</div><div class="line"></div><div class="line">apiRoutes.get(<span class="string">'/goods'</span>, <span class="keyword">function</span> (req, res) &#123;</div><div class="line">  res.json(&#123;</div><div class="line">    errno: 0,</div><div class="line">    data: goods</div><div class="line">  &#125;);</div><div class="line">&#125;);</div><div class="line"></div><div class="line">apiRoutes.get(<span class="string">'/ratings'</span>, <span class="keyword">function</span> (req, res) &#123;</div><div class="line">  res.json(&#123;</div><div class="line">    errno: 0,</div><div class="line">    data: ratings</div><div class="line">  &#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p>要在express使用它，我们需要调用express的变量app：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">app.use(<span class="string">'/api'</span>, apiRoutes);</div></pre></td></tr></table></figure>
+<p>这样我们就可以直接通过<code>/goods</code>来获取数据了。</p>
+<p>完整的dev-server.js：<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://opolpcrco.bkt.clouddn.com/17-5-16/96312509-file_1494930527681_144f1.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure></p>
+<p>写完后要重新运行cnpm run dev，因为我们改的是node文件，然后<a href="http://localhost:8080/api/seller,如果能获取下面显示的数据,则代表数据获取成功" target="_blank" rel="external">http://localhost:8080/api/seller,如果能获取下面显示的数据,则代表数据获取成功</a><br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://opolpcrco.bkt.clouddn.com/17-5-16/76637291-file_1494930638800_17dac.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-05-16T10:30:51.074Z" itemprop="dateUpdated">2017-05-16 18:30:51</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2017/05/16/web-app03/" target="_blank" rel="external">https://silkyer.github.io/2017/05/16/web-app03/</a>
+        
+    </div>
+    <footer>
+        <a href="https://silkyer.github.io">
+            <img src="/img/avatar.jpg" alt="SilkYer">
+            SilkYer
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://silkyer.github.io/2017/05/16/web-app03/&title=《Vue2.0仿外卖APP（三）》 — SilkYer's Blog&pic=https://silkyer.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://silkyer.github.io/2017/05/16/web-app03/&title=《Vue2.0仿外卖APP（三）》 — SilkYer's Blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://silkyer.github.io/2017/05/16/web-app03/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Vue2.0仿外卖APP（三）》 — SilkYer's Blog&url=https://silkyer.github.io/2017/05/16/web-app03/&via=https://silkyer.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://silkyer.github.io/2017/05/16/web-app03/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/05/16/web-app02/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Vue2.0仿外卖APP（二）</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+
+        
+    </ul>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p>
+            <span>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></span>
+            <span>SilkYer &copy; 2015 - 2017</span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://silkyer.github.io/2017/05/16/web-app03/&title=《Vue2.0仿外卖APP（三）》 — SilkYer's Blog&pic=https://silkyer.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://silkyer.github.io/2017/05/16/web-app03/&title=《Vue2.0仿外卖APP（三）》 — SilkYer's Blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://silkyer.github.io/2017/05/16/web-app03/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Vue2.0仿外卖APP（三）》 — SilkYer's Blog&url=https://silkyer.github.io/2017/05/16/web-app03/&via=https://silkyer.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://silkyer.github.io/2017/05/16/web-app03/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://silkyer.github.io/2017/05/16/web-app03/" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '不喜欢我了吗！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

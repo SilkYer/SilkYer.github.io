@@ -28,7 +28,11 @@
 <meta property="og:description" content="最近在学习慕课网的课程：用vue.js做一个仿饿了么外卖APP的项目，现在也把流程啊什么的暂时先整理一下在这个博客上面。 当然，这个过程会有点长，不过确实能学到很多东西。 话不多说，马上开始吧。 注：当我们把用vue-cli脚手架搭建成的vue项目复制到其他地方时，要把node_modules目录删除，不然在其他地方无法执行cnpm run dev，这其中设计到路径的问题。删除之后要重新cnpm">
 <meta property="og:image" content="http://opolpcrco.bkt.clouddn.com/17-5-15/7937415-file_1494862122245_c931.png">
 <meta property="og:image" content="http://opolpcrco.bkt.clouddn.com/17-5-15/20491526-file_1494862564539_6edb.png">
-<meta property="og:updated_time" content="2017-05-15T15:38:03.857Z">
+<meta property="og:image" content="http://opolpcrco.bkt.clouddn.com/17-5-15/25525927-file_1494863109212_18596.png">
+<meta property="og:image" content="http://opolpcrco.bkt.clouddn.com/17-5-15/26985719-file_1494863223718_b6b4.png">
+<meta property="og:image" content="http://opolpcrco.bkt.clouddn.com/17-5-15/57226083-file_1494863586565_920a.png">
+<meta property="og:image" content="http://opolpcrco.bkt.clouddn.com/17-5-15/26001293-file_1494863782367_266a.png">
+<meta property="og:updated_time" content="2017-05-16T03:59:06.325Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Vue2.0仿外卖APP（一）">
 <meta name="twitter:description" content="最近在学习慕课网的课程：用vue.js做一个仿饿了么外卖APP的项目，现在也把流程啊什么的暂时先整理一下在这个博客上面。 当然，这个过程会有点长，不过确实能学到很多东西。 话不多说，马上开始吧。 注：当我们把用vue-cli脚手架搭建成的vue项目复制到其他地方时，要把node_modules目录删除，不然在其他地方无法执行cnpm run dev，这其中设计到路径的问题。删除之后要重新cnpm">
@@ -168,7 +172,7 @@
     <aside class="post-widget">
         <nav class="post-toc-wrap" id="post-toc">
             <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-项目介绍"><span class="post-toc-number">1.</span> <span class="post-toc-text">1.项目介绍</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#项目开发的一个完整流程"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">项目开发的一个完整流程</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#所需技术："><span class="post-toc-number">1.2.</span> <span class="post-toc-text">所需技术：</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#第三方组件："><span class="post-toc-number">1.3.</span> <span class="post-toc-text">第三方组件：</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#关于Vue的数据驱动思想"><span class="post-toc-number">2.</span> <span class="post-toc-text">关于Vue的数据驱动思想</span></a></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-项目介绍"><span class="post-toc-number">1.</span> <span class="post-toc-text">1.项目介绍</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#项目开发的一个完整流程"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">项目开发的一个完整流程</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#所需技术："><span class="post-toc-number">1.2.</span> <span class="post-toc-text">所需技术：</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#第三方组件："><span class="post-toc-number">1.3.</span> <span class="post-toc-text">第三方组件：</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#关于Vue的数据驱动思想"><span class="post-toc-number">2.</span> <span class="post-toc-text">关于Vue的数据驱动思想</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#vue-js数据响应的原理"><span class="post-toc-number">3.</span> <span class="post-toc-text">vue.js数据响应的原理</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#关于vue组件化的思想"><span class="post-toc-number">4.</span> <span class="post-toc-text">关于vue组件化的思想</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#组件化讲解"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">组件化讲解</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#利用template标签处理复杂组件"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">利用template标签处理复杂组件</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#通过props向组件中传递数据"><span class="post-toc-number">4.3.</span> <span class="post-toc-text">通过props向组件中传递数据</span></a></li></ol></li></ol>
         </nav>
     </aside>
     
@@ -227,15 +231,65 @@
                 <div class="image-caption"></div>
             </figure><br>如果没有MVVM框架，数据和视图是如何交互的？</p>
 <p>比如通过AJAX从后端获取数据，会让视图改变，通过手动触发DOM的改变；再比如我们通过前端交互改变一些数据，为了让视图也发生变化，仍然需要通过手动触发进行DOM改变。手动改变DOM不仅繁琐，还容易出错。用了vue之后就可以省去操作DOM变化的步骤了。</p>
-<p>在vue.js中，可以通过directives指令去对DOM做一层封装，当数据发生变化，会通知指令去修改对应的DOM。</p>
-
+<p>在vue.js中，可以通过directives指令去对DOM做一层封装，当数据发生变化，会通知指令去修改对应的DOM。<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://opolpcrco.bkt.clouddn.com/17-5-15/25525927-file_1494863109212_18596.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure><br>Vue.js还会对操作做监听，当我们修改视图的时候，vue.js监听到这些变化，从而改变数据。<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://opolpcrco.bkt.clouddn.com/17-5-15/26985719-file_1494863223718_b6b4.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure><br>(↑上面两幅图红色区域代表正在执行该逻辑)<br>这样就实现了数据的双向绑定。</p>
+<h2 id="vue-js数据响应的原理"><a href="#vue-js数据响应的原理" class="headerlink" title="vue.js数据响应的原理"></a>vue.js数据响应的原理</h2><p>vue.js 是采用数据劫持结合发布者-订阅者模式的方式，通过Object.defineProperty()来劫持各个属性的setter，getter，在数据变动时发布消息给订阅者，触发相应的监听回调。</p>
+<p>思路整理</p>
+<p>已经了解到vue是通过数据劫持的方式来做数据绑定的，其中最核心的方法便是通过Object.defineProperty()来实现对属性的劫持，达到监听数据变动的目的，无疑这个方法是本文中最重要、最基础的内容之一，如果不熟悉defineProperty，猛戳→<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty" target="_blank" rel="external">这里</a></p>
+<p>整理了一下，要实现mvvm的双向绑定，就必须要实现以下几点：<br>1、实现一个数据监听器Observer，能够对数据对象的所有属性进行监听，如有变动可拿到最新值并通知订阅者<br>2、实现一个指令解析器Compile，对每个元素节点的指令进行扫描和解析，根据指令模板替换数据，以及绑定相应的更新函数<br>3、实现一个Watcher，作为连接Observer和Compile的桥梁，能够订阅并收到每个属性变动的通知，执行指令绑定的相应回调函数，从而更新视图<br>4、mvvm入口函数，整合以上三者</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://opolpcrco.bkt.clouddn.com/17-5-15/57226083-file_1494863586565_920a.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>详情可查看: <a href="https://segmentfault.com/a/1190000006599500" target="_blank" rel="external">剖析Vue原理&amp;实现双向绑定MVVM</a> (先把app做出来,回头来研究)</p>
+<h2 id="关于vue组件化的思想"><a href="#关于vue组件化的思想" class="headerlink" title="关于vue组件化的思想"></a>关于vue组件化的思想</h2><p>目的：拓展HTML元素，封装可重用代码</p>
+<p>如下图：左侧是一个页面，被拆分成小的区块，每个区块对应一个组件，组件可以嵌套，最终组合成为一个完整页面。</p>
+<p>在vue.js中，每个组件都对应一个viewModel，最终生成一个viewModel的树：<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://opolpcrco.bkt.clouddn.com/17-5-15/26001293-file_1494863782367_266a.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure></p>
+<h3 id="组件化讲解"><a href="#组件化讲解" class="headerlink" title="组件化讲解"></a>组件化讲解</h3><p>一个简单的HTML页面，以此为基础：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">&lt;!DOCTYPE html&gt;</div><div class="line">       &lt;html&gt;</div><div class="line">             &lt;head&gt;</div><div class="line">                   &lt;title&gt;揭开Vue组件的神秘面纱&lt;/title&gt;</div><div class="line">             &lt;/head&gt;</div><div class="line">       &lt;body&gt;</div><div class="line">             //这中间就是实例挂载点的实例边界</div><div class="line">             &lt;div id=<span class="string">"vueInstance"</span>&gt;&lt;/div&gt;</div><div class="line"></div><div class="line">             &lt;script src=<span class="string">"http://cdn.jsdelivr.net/vue/1.0.16/vue.js"</span>&gt;&lt;/script&gt;</div><div class="line"></div><div class="line">             &lt;script&gt;</div><div class="line">                   // 创建一个新的Vue实例，并设置挂载点</div><div class="line">                   var V = new Vue(&#123;</div><div class="line">                         el : <span class="string">'#vueInstance'</span></div><div class="line">                   &#125;);</div><div class="line">             &lt;/script&gt;</div><div class="line">       &lt;/body&gt;</div><div class="line"> &lt;/html&gt;</div></pre></td></tr></table></figure>
+<p>在Vue中，可以使用Vue.component()来创建和注册你的组件，这个构造器有两个参数：组件的名字；包含组件参数的对象。</p>
+<p>接下来注册一个组件。创建并传入两个参数：组件的名字:’mine’；包含组件参数的对象:这个对象包含一个属性’template’。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Vue.component(<span class="string">'mine'</span>,&#123;</div><div class="line">    template : <span class="string">'&lt;p&gt;My name is Appian.&lt;/p&gt;'</span></div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>现在你已经有了自己的一个组件了，你可以在你的应用的任何地方使用它。只要你调用它的唯一标识(就是组件名字)，并用普通html标签的格式来书写，比如<mine></mine>，组件上注册的内容就会在你的自定义标签的地方插入。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">&lt;!DOCTYPE html&gt;</div><div class="line">&lt;html lang=<span class="string">"en"</span>&gt;</div><div class="line">&lt;head&gt;</div><div class="line">    &lt;meta charset=<span class="string">"UTF-8"</span>&gt;</div><div class="line">    &lt;title&gt;vue组件&lt;/title&gt;</div><div class="line">&lt;/head&gt;</div><div class="line">&lt;body&gt;</div><div class="line">    &lt;div id=<span class="string">"vueInstance"</span>&gt;</div><div class="line">        &lt;mine&gt;&lt;/mine&gt;   </div><div class="line">        &lt;mine&gt;&lt;/mine&gt;</div><div class="line">        &lt;mine&gt;&lt;/mine&gt;   </div><div class="line">     &lt;/div&gt;</div><div class="line">    &lt;script src=<span class="string">"http://cdn.jsdelivr.net/vue/1.0.16/vue.js"</span>&gt;&lt;/script&gt;</div><div class="line">     &lt;script&gt;</div><div class="line">        Vue.component(<span class="string">'mine'</span>,&#123;   //这里就是注册的内容</div><div class="line">            template : <span class="string">'&lt;p&gt;My name is Vue.&lt;/p&gt;'</span></div><div class="line">        &#125;);</div><div class="line">       // 创建一个新的Vue实例，并设置挂载点</div><div class="line">       var V = new Vue(&#123;</div><div class="line">             el : <span class="string">'#vueInstance'</span></div><div class="line">       &#125;);</div><div class="line">     &lt;/script&gt;</div><div class="line">&lt;/body&gt;</div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure>
+<h3 id="利用template标签处理复杂组件"><a href="#利用template标签处理复杂组件" class="headerlink" title="利用template标签处理复杂组件"></a>利用template标签处理复杂组件</h3><p>如果总是在vue.component()构造器里写html代码，复杂页面就不得了了。为了避免上面的这种情况，所以我们可以用template标签（注意属性和标签是不一样的）来达到我们的目的。我们可以在页面的任何地方，定义template标签，并在template标签内，写好我们的模板。</p>
+<blockquote>
+<p>因为template标签在页面加载的时候不会渲染出来，只有在我们需要它的时候，这个标签内的内容才会被渲染出来。所以，你可以把template标签放在任何地方，并给它一个id，以便在组件注册的时候能够找到模板。</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">&lt;!DOCTYPE html&gt;</div><div class="line">&lt;html lang=<span class="string">"en"</span>&gt;</div><div class="line">&lt;head&gt;</div><div class="line">    &lt;meta charset=<span class="string">"UTF-8"</span>&gt;</div><div class="line">    &lt;title&gt;vue组件&lt;/title&gt;</div><div class="line">&lt;/head&gt;</div><div class="line">&lt;body&gt;</div><div class="line">    &lt;div id=<span class="string">"vueInstance"</span>&gt;</div><div class="line">        &lt;mine&gt;&lt;/mine&gt;     </div><div class="line">     &lt;/div&gt;</div><div class="line"></div><div class="line">    &lt;template id=<span class="string">"myVue"</span>&gt;</div><div class="line">        &lt;p&gt;i am vue&lt;/p&gt;</div><div class="line">        &lt;p&gt;welcome!&lt;/p&gt;</div><div class="line">    &lt;/template&gt;</div><div class="line"></div><div class="line">    &lt;script src=<span class="string">"http://cdn.jsdelivr.net/vue/1.0.16/vue.js"</span>&gt;&lt;/script&gt;</div><div class="line">     &lt;script&gt;</div><div class="line">        Vue.component(<span class="string">'mine'</span>,&#123;   //这里就是注册的内容</div><div class="line">            template : <span class="string">'#myVue'</span></div><div class="line">        &#125;);</div><div class="line">       // 创建一个新的Vue实例，并设置挂载点</div><div class="line">       var V = new Vue(&#123;</div><div class="line">             el : <span class="string">'#vueInstance'</span></div><div class="line">       &#125;);</div><div class="line">     &lt;/script&gt;</div><div class="line">&lt;/body&gt;</div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure>
+<h3 id="通过props向组件中传递数据"><a href="#通过props向组件中传递数据" class="headerlink" title="通过props向组件中传递数据"></a>通过props向组件中传递数据</h3><p>Vue是处理父组件向子组件中传递数据是通过props。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Vue.component(<span class="string">'mine'</span>,&#123;</div><div class="line">    template : <span class="string">'&lt;p&gt;Appian is from &#123;&#123; city &#125;&#125;.&lt;/p&gt;'</span>,</div><div class="line">    props : [<span class="string">'city'</span>]</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>props可以是数组，也可以是对象。</p>
+<p>那父组件那里又是怎么指派字段给子组件的呢？</p>
+<p>只需要在对应的标签内写下属性就好</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;mine city=<span class="string">"welcome"</span>&gt;&lt;/mine&gt;</div></pre></td></tr></table></figure>
         </div>
 
         <blockquote class="post-copyright">
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2017-05-15T15:38:03.857Z" itemprop="dateUpdated">2017-05-15 23:38:03</time>
+    最后更新时间：<time datetime="2017-05-16T03:59:06.325Z" itemprop="dateUpdated">2017-05-16 11:59:06</time>
 </span><br>
 
 
@@ -313,7 +367,14 @@
     </div>
 
     
-<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/05/16/Vue一些知识点/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Vue一些知识点</h4>
+      </a>
+    </div>
   
 
   
