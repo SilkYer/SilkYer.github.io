@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://silkyer.github.io/"/>
-  <updated>2017-05-16T15:02:49.830Z</updated>
+  <updated>2017-05-18T10:44:51.534Z</updated>
   <id>https://silkyer.github.io/</id>
   
   <author>
@@ -14,6 +14,124 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>CSS 选择器</title>
+    <link href="https://silkyer.github.io/2017/05/18/CSS-selector/"/>
+    <id>https://silkyer.github.io/2017/05/18/CSS-selector/</id>
+    <published>2017-05-18T10:43:13.086Z</published>
+    <updated>2017-05-18T10:44:51.534Z</updated>
+    
+    <content type="html"><![CDATA[<p>CSS 选择器种类繁多,其中几个长得还比较像,如果有的属性用的不多,一会就忘记了,特别是CSS3中的:nth选择器,那么从现在开始从头一起来看看CSS选择器的运用。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;CSS 选择器种类繁多,其中几个长得还比较像,如果有的属性用的不多,一会就忘记了,特别是CSS3中的:nth选择器,那么从现在开始从头一起来看看CSS选择器的运用。&lt;/p&gt;
+
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>5.17面试</title>
+    <link href="https://silkyer.github.io/2017/05/18/20170517post/"/>
+    <id>https://silkyer.github.io/2017/05/18/20170517post/</id>
+    <published>2017-05-18T05:05:50.952Z</published>
+    <updated>2017-05-18T10:23:23.804Z</updated>
+    
+    <content type="html"><![CDATA[<p>这天参加了两个面试 一个上午一个下午 下午的下沙面试是一家小公司,公司氛围死气沉沉,团队老龄化,依然是做完题目就请滚系列.眼里充满着不耐烦 问了一些个人信息就喊我回去等消息 不用说 他们肯定不会要我</p>
+<p>先Mark下上午面试的总结(这里只总结自己没回答好或者)</p>
+<h2 id="ES6新增的箭头函数-作用是什么-和ES5相比-好处在哪"><a href="#ES6新增的箭头函数-作用是什么-和ES5相比-好处在哪" class="headerlink" title="ES6新增的箭头函数 作用是什么?和ES5相比 好处在哪"></a>ES6新增的箭头函数 作用是什么?和ES5相比 好处在哪</h2><p>回答这个问题之前,首先来看看这个问题:</p>
+<h3 id="JS中this到底指向什么"><a href="#JS中this到底指向什么" class="headerlink" title="JS中this到底指向什么?"></a>JS中this到底指向什么?</h3><p>这是个老生常谈的问题了,网上一堆大牛给出了答案,概括来说分4中情况:</p>
+<blockquote>
+<p>this作为对象方法调用、作为函数调用、作为构造函数调用、apply或call调用。</p>
+</blockquote>
+<p>具体答案依然一搜一大堆,篇幅问题,且这里讲的是箭头函数,所以以 <code>this作为函数调用</code> 这一问题来分析</p>
+<h4 id="this作为函数被调用时"><a href="#this作为函数被调用时" class="headerlink" title="this作为函数被调用时"></a>this作为函数被调用时</h4><p>函数也可以直接被调用，这个时候this被绑定到了全局对象。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">ar x = 1;  </div><div class="line">　<span class="keyword">function</span> <span class="function"><span class="title">test</span></span>()&#123;  </div><div class="line">　　　this.x = 0;  </div><div class="line">　&#125;  </div><div class="line">　<span class="built_in">test</span>();  </div><div class="line">　alert(x); //this作为函数直接调用了!这里是语法糖有简写 输出为0</div></pre></td></tr></table></figure>
+<p>但这样就会出现一些问题，就是在函数内部定义的函数，其this也会指向全局，而和我们希望的恰恰相反。代码如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">var o = &#123;</div><div class="line">    x : 1,</div><div class="line">    func : <span class="function"><span class="title">function</span></span>() &#123; console.log(this.x) &#125;,</div><div class="line">    <span class="built_in">test</span> : <span class="function"><span class="title">function</span></span>() &#123;</div><div class="line">        <span class="built_in">set</span>Timeout(<span class="function"><span class="title">function</span></span>() &#123;</div><div class="line">            this.func();</div><div class="line">        &#125;, 100);</div><div class="line">    &#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">o.test(); // TypeError : this.func is not a <span class="keyword">function</span></div></pre></td></tr></table></figure>
+<p>上面的代码会出现错误，因为this的指向从o变为了全局（函数调用中的this都是指向全局的）。我们需要修改上面的代码如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">var o = &#123;</div><div class="line">    x : 1,</div><div class="line">    func : <span class="function"><span class="title">function</span></span>() &#123; console.log(this.x) &#125;,</div><div class="line">    <span class="built_in">test</span> : <span class="function"><span class="title">function</span></span>() &#123;</div><div class="line">        var _this = this;</div><div class="line">        <span class="built_in">set</span>Timeout(<span class="function"><span class="title">function</span></span>() &#123;</div><div class="line">            _this.func(); </div><div class="line">        &#125;, 100);</div><div class="line">    &#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">o.test();</div></pre></td></tr></table></figure>
+<p>通过使用外部事先保存的this就行了</p>
+<blockquote>
+<p>(其实这个所谓的外部保存this就是第一种情况: <code>this作为对象被调用</code>,此时的this,就是指向o对象!)。</p>
+</blockquote>
+<p>这里就可以利用到箭头函数了，我们刚才说过，</p>
+<blockquote>
+<p>箭头函数的 this 始终指向函数定义时的 this，而非执行时</p>
+</blockquote>
+<p>也就是说,用了箭头函数,就省掉了用一个新的that去存外部this的指向了</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">var o = &#123;</div><div class="line">    x : 1,</div><div class="line">    func : <span class="function"><span class="title">function</span></span>() &#123; console.log(this.x) &#125;,</div><div class="line">    <span class="built_in">test</span> : <span class="function"><span class="title">function</span></span>() &#123;</div><div class="line">        <span class="built_in">set</span>Timeout(() =&gt; &#123; this.func() &#125;, 100);</div><div class="line">    &#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">o.test();</div></pre></td></tr></table></figure>
+<p>PS: 测试表明,使用箭头函数,除了写法优雅以外,从性能上已经确定箭头函数比bind()快了</p>
+<h2 id="什么是CDN（问题：加快网页加载速度手段）"><a href="#什么是CDN（问题：加快网页加载速度手段）" class="headerlink" title="什么是CDN（问题：加快网页加载速度手段）"></a>什么是CDN（问题：加快网页加载速度手段）</h2><p>CDN的全称是Content Delivery Network，即内容分发网络。</p>
+<p>内容包括但不限于什么什么分布式存储、负载均衡、网络请求的重定向和内容管理4个技术性名词</p>
+<p>总的来说就是尽可能避开互联网上有可能影响数据传输速度和稳定性的瓶颈和环节，使内容传输的更快、更稳定。解决网络拥挤的状况，提高用户访问网站的响应速度。</p>
+<p>下面这则漫画简要的描述了CDN为何物和其作用：</p>
+<p><a href="http://xiaoheiyang.baijia.baidu.com/article/126615" target="_blank" rel="external">http://xiaoheiyang.baijia.baidu.com/article/126615</a></p>
+<h2 id="DNS"><a href="#DNS" class="headerlink" title="DNS"></a>DNS</h2><h3 id="为什么需要DNS解析域名为IP地址？"><a href="#为什么需要DNS解析域名为IP地址？" class="headerlink" title="为什么需要DNS解析域名为IP地址？"></a>为什么需要DNS解析域名为IP地址？</h3><p>网络通讯大部分是基于TCP/IP的，而TCP/IP是基于IP地址的，所以计算机在网络上进行通讯时只能识别如“202.96.134.133”之类的IP地址，而不能认识域名。我们无法记住10个以上IP地址的网站，所以我们访问网站时，更多的是在浏览器地址栏中输入域名，就能看到所需要的页面，这是因为有一个叫“DNS服务器”的计算机自动把我们的域名“翻译”成了相应的IP地址，然后调出IP地址所对应的网页。</p>
+<h3 id="什么是DNS？"><a href="#什么是DNS？" class="headerlink" title="什么是DNS？"></a>什么是DNS？</h3><p>DNS( Domain Name System)是“域名系统”的英文缩写，是一种组织成域层次结构的计算机和网络服务命名系统，它用于TCP/IP网络，它所提供的服务是用来将主机名和域名转换为IP地址的工作。DNS就是这样的一位“翻译官”，它的基本工作原理可用下图来表示。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://opolpcrco.bkt.clouddn.com/17-5-18/96543683-file_1495101053717_1112d.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<h3 id="DNS过程"><a href="#DNS过程" class="headerlink" title="DNS过程"></a>DNS过程</h3><p>DNS是应用层协议，事实上他是为其他应用层协议工作的，包括不限于HTTP和SMTP以及FTP，用于将用户提供的主机名解析为ip地址。</p>
+<p>DNS 查询的过程如下图所示</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://opolpcrco.bkt.clouddn.com/17-5-18/38377719-file_1495101288804_dc8c.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>1、在浏览器中输入www  . qq  .com 域名，操作系统会先检查自己本地的hosts文件是否有这个网址映射关系，如果有，就先调用这个IP地址映射，完成域名解析。 </p>
+<p>2、如果hosts里没有这个域名的映射，则查找本地DNS解析器缓存，是否有这个网址映射关系，如果有，直接返回，完成域名解析。</p>
+<p>3、如果hosts与本地DNS解析器缓存都没有相应的网址映射关系，首先会找TCP/ip参数中设置的首选DNS服务器，在此我们叫它本地DNS服务器，此服务器收到查询时，如果要查询的域名，包含在本地配置区域资源中，则返回解析结果给客户机，完成域名解析，此解析具有权威性。</p>
+<p>4、如果要查询的域名，不由本地DNS服务器区域解析，但该服务器已缓存了此网址映射关系，则调用这个IP地址映射，完成域名解析，此解析不具有权威性。</p>
+<p>5、如果本地DNS服务器本地区域文件与缓存解析都失效，则根据本地DNS服务器的设置（是否设置转发器）进行查询，如果未用转发模式，本地DNS就把请求发至13台根DNS，根DNS服务器收到请求后会判断这个域名(.com)是谁来授权管理，并会返回一个负责该顶级域名服务器的一个IP。本地DNS服务器收到IP信息后，将会联系负责.com域的这台服务器。这台负责.com域的服务器收到请求后，如果自己无法解析，它就会找一个管理.com域的下一级DNS服务器地址(<a href="http://qq.com" target="_blank" rel="external">http://qq.com</a>) 给本地DNS服务器。当本地DNS服务器收到这个地址后，就会找 <a href="http://qq.com" target="_blank" rel="external">http://qq.com</a> 域服务器，重复上面的动作，进行查询，直至找到 www  . qq  .com 主机。</p>
+<p>6、如果用的是转发模式，此DNS服务器就会把请求转发至上一级DNS服务器，由上一级服务器进行解析，上一级服务器如果不能解析，或找根DNS或把转请求转至上上级，以此循环。不管是本地DNS服务器用是是转发，还是根提示，最后都是把结果返回给本地DNS服务器，由此DNS服务器再返回给客户机。</p>
+<p>详见： <a href="https://www.zhihu.com/question/23042131" target="_blank" rel="external">https://www.zhihu.com/question/23042131</a></p>
+<h2 id="关于TCP-IP-四层协议"><a href="#关于TCP-IP-四层协议" class="headerlink" title="关于TCP/IP 四层协议"></a>关于TCP/IP 四层协议</h2><p>其实了解过后发现，想要理解DNS，其实也离不开TCP/IP。HTTP协议就属于TCP/IP协议家族中的一员，前端经常要接触HTTP,自然很有必要理解一下什么是TCP/IP</p>
+<h3 id="什么是TCP-IP"><a href="#什么是TCP-IP" class="headerlink" title="什么是TCP/IP"></a>什么是TCP/IP</h3><p>两台机器之间该如何通信，就需要制定各种各样的协议了。例如：文件传输适用TCP协议。域名系统适用DNS协议。有了些协议的存在，各种数据流按照规则传输，计算机之间得以通信。</p>
+<p>TCP/IP协议是一个协议集合。统称为TCP/IP。TCP/IP协议族中有一个重要的概念是分层，TCP/IP协议按照层次分为以下四层。应用层、传输层、网络层、数据链路层。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://opolpcrco.bkt.clouddn.com/17-5-18/22174238-file_1495102677700_109af.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<h3 id="HTTP-关系密切的协议-IP、TCP-和-DNS"><a href="#HTTP-关系密切的协议-IP、TCP-和-DNS" class="headerlink" title="HTTP 关系密切的协议 : IP、TCP 和 DNS"></a>HTTP 关系密切的协议 : IP、TCP 和 DNS</h3><p>IP协议：IP(Internet protocol),这里的IP不是值得我们通常所说的192.168.1.1.这个IP指的是一种协议，而后面的数字值得是IP地址。IP协议的作用在于把各种数据包准确无误的传递给对方，其中两个重要的条件是IP地址，和MAC地址（Media Access Control Address）。由于IP地址是稀有资源，不可能每个人都拥有一个IP地址，所以我们通常的IP地址是路由器给我们生成的IP地址，路由器里面会记录我们的MAC地址。而MAC地址是全球唯一的，除去人为因素外不可能重复。举一个现实生活中的例子，IP地址就如同是我们居住小区的地址，而MAC地址就是我们住的那栋楼那个房间那个人。</p>
+<p><img src="http://opolpcrco.bkt.clouddn.com/17-5-18/52784057-file_1495102760272_976a.png" alt=""></p>
+<p>TCP协议：如果说IP协议是找到对方的详细地址。那么TCP协议就是把安全的把东西带给对方。各有分工，互不冲突。</p>
+<p>按层次分，TCP属于传输层，提供可靠的字节流服务。什么叫字节流服务呢？所谓的字节流，其实就类似于信息切割。比如你是一个卖自行车的，你要去送货。安装好的自行车，太过庞大，又不稳定，容易损伤。不如直接把自行车拆开来，每个零件上都贴上收货人的姓名。最后送到后按照把属于同一个人的自行车再组装起来，这个拆解、运输、拼装的过程其实就是TCP字节流的过程。</p>
+<p>为了确保信息能够确保准确无误的到达，TCP采用了著名的三次握手策略（three-way handshaking）</p>
+<h2 id="访问一个网站，从输入url到最终打开成功经历的http流程-回答得不好-下图解释得再清楚不过了"><a href="#访问一个网站，从输入url到最终打开成功经历的http流程-回答得不好-下图解释得再清楚不过了" class="headerlink" title="访问一个网站，从输入url到最终打开成功经历的http流程(回答得不好,下图解释得再清楚不过了)"></a>访问一个网站，从输入url到最终打开成功经历的http流程(回答得不好,下图解释得再清楚不过了)</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://opolpcrco.bkt.clouddn.com/17-5-18/52437010-file_1495102914552_dd31.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>经历这次面试后，对我的提升实在太大，让我理解到，既然已经从事了IT这个行业，就势必要去了解下网络底层，虽然实际工作中这些东西用不到。高楼大厦，起于平川。不积跬步，无以至千里，不积小流，无以成江海。我现在的知识结构，就如同空中楼阁。稍微遇到高层次的问题，可能就理解不了了。一棵大树如果不在刚开始的时候深深的扎根，把所有的力量用到生长叶子开花上面。等到了大风来袭，互联网低潮的时候，一切来自不易的生活，就轻而易举的被倾覆。</p>
+<p>我的理想是成为一个拥有渊博知识的人，拥有丰富的专业知识，足以应对工作中的难题。工作之余，博览群书，提升气质谈吐。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;这天参加了两个面试 一个上午一个下午 下午的下沙面试是一家小公司,公司氛围死气沉沉,团队老龄化,依然是做完题目就请滚系列.眼里充满着不耐烦 问了一些个人信息就喊我回去等消息 不用说 他们肯定不会要我&lt;/p&gt;
+&lt;p&gt;先Mark下上午面试的总结(这里只总结自己没回答好或者)&lt;/
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>Vue2.0仿外卖APP（五）</title>
