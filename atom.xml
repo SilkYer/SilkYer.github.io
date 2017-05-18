@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://silkyer.github.io/"/>
-  <updated>2017-05-16T10:30:51.074Z</updated>
+  <updated>2017-05-16T15:02:49.830Z</updated>
   <id>https://silkyer.github.io/</id>
   
   <author>
@@ -14,6 +14,237 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Vue2.0仿外卖APP（五）</title>
+    <link href="https://silkyer.github.io/2017/05/16/web-app05/"/>
+    <id>https://silkyer.github.io/2017/05/16/web-app05/</id>
+    <published>2017-05-16T14:25:27.413Z</published>
+    <updated>2017-05-16T15:02:49.830Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="header组件"><a href="#header组件" class="headerlink" title="header组件"></a>header组件</h2><h3 id="Vue-resource应用-当时的我还不知道axios"><a href="#Vue-resource应用-当时的我还不知道axios" class="headerlink" title="Vue-resource应用(当时的我还不知道axios..)"></a>Vue-resource应用(当时的我还不知道axios..)</h3><p><a href="https://github.com/pagekit/vue-resource" target="_blank" rel="external">https://github.com/pagekit/vue-resource</a></p>
+<p>vue-resource是Vue.js的一款插件，它可以通过XMLHttpRequest或JSONP发起请求并处理响应。也就是说，$.ajax能做的事情，vue-resource插件一样也能做到，而且vue-resource的API更为简洁。另外，vue-resource还提供了非常有用的inteceptor功能，使用inteceptor可以在请求前和请求后附加一些行为，比如使用inteceptor在ajax请求时显示loading界面。</p>
+<h3 id="vue-resource插件具有以下特点："><a href="#vue-resource插件具有以下特点：" class="headerlink" title="vue-resource插件具有以下特点："></a>vue-resource插件具有以下特点：</h3><h4 id="体积小"><a href="#体积小" class="headerlink" title="体积小"></a>体积小</h4><p>vue-resource非常小巧，在压缩以后只有大约12KB，服务端启用gzip压缩后只有4.5KB大小，这远比jQuery的体积要小得多。</p>
+<h4 id="支持主流的浏览器"><a href="#支持主流的浏览器" class="headerlink" title="支持主流的浏览器"></a>支持主流的浏览器</h4><p>和Vue.js一样，vue-resource除了不支持IE 9以下的浏览器，其他主流的浏览器都支持。</p>
+<h4 id="支持Promise-API和URI-Templates"><a href="#支持Promise-API和URI-Templates" class="headerlink" title="支持Promise API和URI Templates"></a>支持Promise API和URI Templates</h4><p>Promise是ES6的特性，Promise的中文含义为“先知”，Promise对象用于异步计算。<br>URI Templates表示URI模板，有些类似于ASP.NET MVC的路由模板。</p>
+<h4 id="支持拦截器"><a href="#支持拦截器" class="headerlink" title="支持拦截器"></a>支持拦截器</h4><p>拦截器是全局的，拦截器可以在请求发送前和发送请求后做一些处理。<br>拦截器在一些场景下会非常有用，比如请求发送前在headers中设置access_token，或者在请求失败时，提供共通的处理方式。</p>
+<blockquote>
+<p>关于vue-resource更详细的介绍:<br><a href="http://www.cnblogs.com/keepfool/p/5657065.html" target="_blank" rel="external">http://www.cnblogs.com/keepfool/p/5657065.html</a></p>
+</blockquote>
+<h3 id="获取数据"><a href="#获取数据" class="headerlink" title="获取数据"></a>获取数据</h3><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://opolpcrco.bkt.clouddn.com/17-5-16/9501908-file_1494946096345_332e.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>如图,Header组件里的商家数据，是通过异步请求后端的数据接口获得的，header组件就负责接受这样的数据并渲染 。在app.vue组件（header的父组件），通过发送一个AJAX请求去获取商家的相关数据，取回来的数据放进app.vue里的<code>&lt;header&gt;</code>标签,然后这些数据通过header组件里的prop属性设置一下后,数据就在header组件里,就可以调用这些数据来做我们想做的事情</p>
+<h2 id="父子组件间的通信"><a href="#父子组件间的通信" class="headerlink" title="父子组件间的通信"></a>父子组件间的通信</h2><p>组件意味着协同工作，通常父子组件会是这样的关系：组件 A 在它的模版中使用了组件 B 。它们之间必然需要相互通信：父组件要给子组件传递数据，子组件需要将它内部发生的事情告知给父组件。然而，在一个良好定义的接口中尽可能将父子组件解耦是很重要的。这保证了每个组件可以在相对隔离的环境中书写和理解，也大幅提高了组件的可维护性和可重用性。</p>
+<p>在 Vue.js 中，父子组件的关系可以总结为 props down, events up 。父组件通过 props 向下传递数据给子组件，子组件通过 events 给父组件发送消息。看看它们是怎么工作的。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://opolpcrco.bkt.clouddn.com/17-5-16/60285371-file_1494946329211_2f7c.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<h3 id="使用-Prop-传递数据"><a href="#使用-Prop-传递数据" class="headerlink" title="使用 Prop 传递数据"></a>使用 Prop 传递数据</h3><p>组件实例的作用域是孤立的。这意味着不能并且不应该在子组件的模板内直接引用父组件的数据。可以使用 props 把数据传给子组件。<br>prop 是父组件用来传递数据的一个自定义属性。子组件需要显式地用 props 选项声明 “prop”：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Vue.component(<span class="string">'child'</span>, &#123;</div><div class="line">  // 声明 props</div><div class="line">  props: [<span class="string">'message'</span>],</div><div class="line">  // 就像 data 一样，prop 可以用在模板内</div><div class="line">  // 同样也可以在 vm 实例中像 “this.message” 这样使用</div><div class="line">  template: <span class="string">'&lt;span&gt;&#123;&#123; message &#125;&#125;&lt;/span&gt;'</span></div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>然后向它传入一个普通字符串：</p>
+<blockquote>
+<child message="hello!"></child>
+
+</blockquote>
+<p>结果输出“hello”。</p>
+<p>回到项目中来</p>
+<p>首先我们需要给app.vue定义一个seller的对象：可以通过data()方法。在vue.js中，这个data属性是一个函数（可查看链接），因为组件是可以被复用的，如果定义一个对象然后修改某一个组件的话会影响另外的组件，所以这里定义成一个函数。这个函数return一个对象，对象里面有seller对象，先定为空，然后我们通过发送AJAX请求去拿到一个seller对象，然后send给它。这样就可以拿到seller对象的数据。</p>
+<p>Vue.js社区有个第三方插件：vue-resource，用来处理一些前后端请求数据交互的。</p>
+<p>示例：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  // GET /someUrl</div><div class="line">  this.<span class="variable">$http</span>.get(<span class="string">'/someUrl'</span>).then((response) =&gt; &#123;</div><div class="line">    // success callback</div><div class="line">  &#125;, (response) =&gt; &#123;</div><div class="line">    // error callback</div><div class="line">  &#125;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>同样的，需要在package.json添加它的依赖：<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://opolpcrco.bkt.clouddn.com/17-5-16/31398266-file_1494946430454_6e52.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure></p>
+<p>第三方插件import引用时需要注册，用Vue.use(vueResource)把这个注册。在main.js注册</p>
+<p>然后回到app.vue，在这里我们需要通过一个vue.resource去发送一个AJAX请求，需要在什么时序去发起呢？</p>
+<p>我们知道每个vue实例化的时候都有一个生命周期，其中有个钩子叫created().</p>
+<blockquote>
+<p>关于钩子：<br><a href="https://segmentfault.com/q/1010000004335505" target="_blank" rel="external">https://segmentfault.com/q/1010000004335505</a></p>
+<p>关于实例的生命周期：<br><a href="https://cn.vuejs.org/v2/guide/instance.html#实例生命周期" target="_blank" rel="external">https://cn.vuejs.org/v2/guide/instance.html#实例生命周期</a> </p>
+</blockquote>
+<p>这是它的一个生命周期钩子函数，就是一个vue实例被生成后调用这个函数。一个vue实例被生成后还要绑定到某个html元素上，之后还要进行编译，然后再插入到document中。每一个阶段都会有一个钩子函数，方便开发者在不同阶段处理不同逻辑。</p>
+<blockquote>
+<p>一般可以在created函数中调用ajax获取页面初始化所需的数据,如下图:</p>
+</blockquote>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://opolpcrco.bkt.clouddn.com/17-5-16/23922088-file_1494946519227_13a9.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>去chrome的network查看,看到请求已经发出去了<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://opolpcrco.bkt.clouddn.com/17-5-16/60399181-file_1494946751754_183e8.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure></p>
+<p>vue-resource就介绍完了，seller对象已经拿到，接下来就把seller对象传递给header组件，让header渲染即可。</p>
+<p>这里还有一个坑!!<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://opolpcrco.bkt.clouddn.com/17-5-16/41239334-file_1494946833155_1343.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure></p>
+<p>Vue-resource 1.0的时候,右侧的response就能直接拿到seller字段</p>
+<p>但是2.0时,resource封装的方法变了,需要response.body,才能拿到seller,不加body,只会拿到一个Object</p>
+<p>##</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;header组件&quot;&gt;&lt;a href=&quot;#header组件&quot; class=&quot;headerlink&quot; title=&quot;header组件&quot;&gt;&lt;/a&gt;header组件&lt;/h2&gt;&lt;h3 id=&quot;Vue-resource应用-当时的我还不知道axios&quot;&gt;&lt;a href=&quot;#V
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Vue2.0仿外卖APP（四）</title>
+    <link href="https://silkyer.github.io/2017/05/16/web-app04/"/>
+    <id>https://silkyer.github.io/2017/05/16/web-app04/</id>
+    <published>2017-05-16T10:34:07.647Z</published>
+    <updated>2017-05-16T14:25:16.451Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="组建拆分"><a href="#组建拆分" class="headerlink" title="组建拆分"></a>组建拆分</h2><p>先在static目录下引入reset.css</p>
+<p>接着在index.html引入，并且设置移动端<code>&lt;meta&gt;</code>,viewport的</p>
+<p>有时候由于eslint的检测功能,写js少一个冒号多一个空格都会频繁报错,这会让刚接触Vue或者对ES6不熟悉的人痛苦不堪,可以在上一节讲到的eslint相关配置处,把对应检测功能置零</p>
+<p>如果不置零,下面这段代码就会报错:<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://opolpcrco.bkt.clouddn.com/17-5-16/8069189-file_1494931134935_dde4.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure><br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://opolpcrco.bkt.clouddn.com/17-5-16/98379974-file_1494931135057_9d64.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure></p>
+<p>所以要到eslintrc.js去设置</p>
+<p>现在的App.vue如下：<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://opolpcrco.bkt.clouddn.com/17-5-16/38681868-file_1494931189650_fbb5.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure><br>然后我们编写组件来替换那三个区块。</p>
+<p>创建header组件<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://opolpcrco.bkt.clouddn.com/17-5-16/21628972-file_1494931295181_fb1e.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure><br>将header引入到App.vue里面(注册)：<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://opolpcrco.bkt.clouddn.com/17-5-16/89956498-file_1494931304813_1fca.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure><br>Components后面要有空格。</p>
+<p>这里还要安装一个stylus-loader依赖，不然会报错。</p>
+<p>这里提供一个依赖包的安装方法：到package.json，在里面添加所需要的最新版本的包，然后再cnpm install ，这样就可以添加到node_modules里面了，运行cnpm run dev。<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://opolpcrco.bkt.clouddn.com/17-5-16/77535721-file_1494931493990_c38e.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure></p>
+<p>基本的组件结构如下:<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://opolpcrco.bkt.clouddn.com/17-5-16/84253293-file_1494931494106_736.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure></p>
+<h2 id="Vue-router"><a href="#Vue-router" class="headerlink" title="Vue-router"></a>Vue-router</h2><p>因为在单页应用中，内容区块有三部分，所以这时候要用到路由vue-router</p>
+<p><a href="http://router.vuejs.org/zh-cn/installation.html" target="_blank" rel="external">http://router.vuejs.org/zh-cn/installation.html</a></p>
+<p>同样通过package.json来安装。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://opolpcrco.bkt.clouddn.com/17-5-16/94553020-file_1494931783933_caa1.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>vue-router的用法：<a href="http://router.vuejs.org/zh-cn/essentials/getting-started.html" target="_blank" rel="external">http://router.vuejs.org/zh-cn/essentials/getting-started.html</a></p>
+<p>可以参考下面两个链接:</p>
+<p>官网的写法：<a href="http://router.vuejs.org/zh-cn/essentials/getting-started.html" target="_blank" rel="external">http://router.vuejs.org/zh-cn/essentials/getting-started.html</a></p>
+<p>参考：<a href="https://segmentfault.com/q/1010000007929093/a-1020000007929260" target="_blank" rel="external">https://segmentfault.com/q/1010000007929093/a-1020000007929260</a><br>(PS: 链接都是个人觉得在遇到困难时很好的解决思路,所以放上来供大家参考)</p>
+<p>如果使用模块化机制编程，导入Vue和VueRouter，要调用 Vue.use(VueRouter)。在通过use()这个方法，相当于安装插件。</p>
+<p>参照官网给的vue-router的过程：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">// 如果使用模块化机制编程，導入Vue和VueRouter，要调用 Vue.use(VueRouter)</div><div class="line"></div><div class="line">// 1. 定义（路由）组件。</div><div class="line">// 可以从其他文件 import 进来</div><div class="line">const Foo = &#123; template: <span class="string">'&lt;div&gt;foo&lt;/div&gt;'</span> &#125;</div><div class="line">const Bar = &#123; template: <span class="string">'&lt;div&gt;bar&lt;/div&gt;'</span> &#125;</div><div class="line"></div><div class="line">// 2. 定义路由</div><div class="line">// 每个路由应该映射一个组件。 其中<span class="string">"component"</span> 可以是</div><div class="line">// 通过 Vue.extend() 创建的组件构造器，</div><div class="line">// 或者，只是一个组件配置对象。</div><div class="line">// 我们晚点再讨论嵌套路由。</div><div class="line">const routes = [</div><div class="line">  &#123; path: <span class="string">'/foo'</span>, component: Foo &#125;,</div><div class="line">  &#123; path: <span class="string">'/bar'</span>, component: Bar &#125;</div><div class="line">]</div><div class="line"></div><div class="line">// 3. 创建 router 实例，然后传 `routes` 配置</div><div class="line">// 你还可以传别的配置参数, 不过先这么简单着吧。</div><div class="line">const router = new VueRouter(&#123;</div><div class="line">  routes // （缩写）相当于 routes: routes</div><div class="line">&#125;)</div><div class="line"></div><div class="line">// 4. 创建和挂载根实例。</div><div class="line">// 记得要通过 router 配置参数注入路由，</div><div class="line">// 从而让整个应用都有路由功能</div><div class="line">const app = new Vue(&#123;</div><div class="line">  router</div><div class="line">&#125;).<span class="variable">$mount</span>(<span class="string">'#app'</span>)</div><div class="line"></div><div class="line">// 现在，应用已经启动了！</div></pre></td></tr></table></figure>
+<p>所以,main.js是这样的:<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://opolpcrco.bkt.clouddn.com/17-5-16/66883057-file_1494941644265_ac97.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure></p>
+<h2 id="1像素border实现"><a href="#1像素border实现" class="headerlink" title="1像素border实现"></a>1像素border实现</h2><p>border-bottom: 1px solid rgba(7, 17, 27, 0.1)</p>
+<p>直接在.tab加这句话可以实现，但是在移动端看到的就不是这样的，因为手机端有个dpr的概念,电脑设置的1px不代表所有手机里面显示的都是1px:<br><a href="http://mobile.51cto.com/web-484304.htm" target="_blank" rel="external">http://mobile.51cto.com/web-484304.htm</a></p>
+<p>总的来说就是: 想要在dpr=2的设备下显示1px,对于css而言,可认为border: 0.5px,因为这是retina下(dpr=2)下能显示的最小单位。</p>
+<p>然而，无奈并不是所有手机浏览器都能识别border: 0.5px;，ios7以下，android等其他系统里，0.5px会被当成为0px处理，那么如何实现这0.5px呢？</p>
+<p>由于项目中多处用到border1px,所以单独拿出来放到一个通用文件里: mixin.styl<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://opolpcrco.bkt.clouddn.com/17-5-16/51883552-file_1494944137711_dbca.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure></p>
+<p>这只是通用文件,真正实现1px,关键是检测出设备dpr,从而进行缩放</p>
+<p>没错就是媒体查询@media</p>
+<p>把检测dpr这个功能单独隔离出一个base.styl<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://opolpcrco.bkt.clouddn.com/17-5-16/39849946-file_1494944343316_10e62.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure></p>
+<p>所以为了使用border1px,则需要在使用的那个组件,同时@import (base.styl)和(mixin.styl),为了简洁,我们把这些需要单独引入的css文件,再放入一个总的styl文件: index.styl<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://opolpcrco.bkt.clouddn.com/17-5-16/56691572-file_1494944596411_c061.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure></p>
+<p>至此,每一个需要用到border1px的地方,只需要:<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://opolpcrco.bkt.clouddn.com/17-5-16/9604161-file_1494944694524_d2a9.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure></p>
+<p>总结一像素的实现：伪类+缩放（用一个class）</p>
+<p>这样基本框架已经搭建好了，接下来就来开发组件。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;组建拆分&quot;&gt;&lt;a href=&quot;#组建拆分&quot; class=&quot;headerlink&quot; title=&quot;组建拆分&quot;&gt;&lt;/a&gt;组建拆分&lt;/h2&gt;&lt;p&gt;先在static目录下引入reset.css&lt;/p&gt;
+&lt;p&gt;接着在index.html引入，并且设置移动端&lt;code&gt;&amp;lt
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>Vue2.0仿外卖APP（三）</title>

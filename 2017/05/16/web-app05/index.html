@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>Vue2.0仿外卖APP（五） | SilkYer&#39;s Blog | Write the code , Change the world</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="header组件Vue-resource应用(当时的我还不知道axios..)https://github.com/pagekit/vue-resource vue-resource是Vue.js的一款插件，它可以通过XMLHttpRequest或JSONP发起请求并处理响应。也就是说，$.ajax能做的事情，vue-resource插件一样也能做到，而且vue-resource的API更为简洁。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vue2.0仿外卖APP（五）">
+<meta property="og:url" content="https://silkyer.github.io/2017/05/16/web-app05/index.html">
+<meta property="og:site_name" content="SilkYer&#39;s Blog">
+<meta property="og:description" content="header组件Vue-resource应用(当时的我还不知道axios..)https://github.com/pagekit/vue-resource vue-resource是Vue.js的一款插件，它可以通过XMLHttpRequest或JSONP发起请求并处理响应。也就是说，$.ajax能做的事情，vue-resource插件一样也能做到，而且vue-resource的API更为简洁。">
+<meta property="og:image" content="http://opolpcrco.bkt.clouddn.com/17-5-16/9501908-file_1494946096345_332e.png">
+<meta property="og:image" content="http://opolpcrco.bkt.clouddn.com/17-5-16/60285371-file_1494946329211_2f7c.png">
+<meta property="og:image" content="http://opolpcrco.bkt.clouddn.com/17-5-16/31398266-file_1494946430454_6e52.png">
+<meta property="og:image" content="http://opolpcrco.bkt.clouddn.com/17-5-16/23922088-file_1494946519227_13a9.png">
+<meta property="og:image" content="http://opolpcrco.bkt.clouddn.com/17-5-16/60399181-file_1494946751754_183e8.png">
+<meta property="og:image" content="http://opolpcrco.bkt.clouddn.com/17-5-16/41239334-file_1494946833155_1343.png">
+<meta property="og:updated_time" content="2017-05-16T15:02:49.830Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Vue2.0仿外卖APP（五）">
+<meta name="twitter:description" content="header组件Vue-resource应用(当时的我还不知道axios..)https://github.com/pagekit/vue-resource vue-resource是Vue.js的一款插件，它可以通过XMLHttpRequest或JSONP发起请求并处理响应。也就是说，$.ajax能做的事情，vue-resource插件一样也能做到，而且vue-resource的API更为简洁。">
+<meta name="twitter:image" content="http://opolpcrco.bkt.clouddn.com/17-5-16/9501908-file_1494946096345_332e.png">
+    
+        <link rel="alternate" type="application/atom+xml" title="SilkYer&#39;s Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">SilkYer</h5>
+          <a href="mailto:fpx1100@gmail.com" title="fpx1100@gmail.com" class="mail">fpx1100@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                文章
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/silkyer" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/silkyer" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/custom"  >
+                <i class="icon icon-lg icon-link"></i>
+                测试
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Vue2.0仿外卖APP（五）</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Vue2.0仿外卖APP（五）</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-05-16T14:25:27.413Z" itemprop="datePublished" class="page-time">
+  2017-05-16
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#header组件"><span class="post-toc-number">1.</span> <span class="post-toc-text">header组件</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Vue-resource应用-当时的我还不知道axios"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">Vue-resource应用(当时的我还不知道axios..)</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#vue-resource插件具有以下特点："><span class="post-toc-number">1.2.</span> <span class="post-toc-text">vue-resource插件具有以下特点：</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#体积小"><span class="post-toc-number">1.2.1.</span> <span class="post-toc-text">体积小</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#支持主流的浏览器"><span class="post-toc-number">1.2.2.</span> <span class="post-toc-text">支持主流的浏览器</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#支持Promise-API和URI-Templates"><span class="post-toc-number">1.2.3.</span> <span class="post-toc-text">支持Promise API和URI Templates</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#支持拦截器"><span class="post-toc-number">1.2.4.</span> <span class="post-toc-text">支持拦截器</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#获取数据"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">获取数据</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#父子组件间的通信"><span class="post-toc-number">2.</span> <span class="post-toc-text">父子组件间的通信</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#使用-Prop-传递数据"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">使用 Prop 传递数据</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-web-app05"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Vue2.0仿外卖APP（五）</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-05-16 22:25:27" datetime="2017-05-16T14:25:27.413Z"  itemprop="datePublished">2017-05-16</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h2 id="header组件"><a href="#header组件" class="headerlink" title="header组件"></a>header组件</h2><h3 id="Vue-resource应用-当时的我还不知道axios"><a href="#Vue-resource应用-当时的我还不知道axios" class="headerlink" title="Vue-resource应用(当时的我还不知道axios..)"></a>Vue-resource应用(当时的我还不知道axios..)</h3><p><a href="https://github.com/pagekit/vue-resource" target="_blank" rel="external">https://github.com/pagekit/vue-resource</a></p>
+<p>vue-resource是Vue.js的一款插件，它可以通过XMLHttpRequest或JSONP发起请求并处理响应。也就是说，$.ajax能做的事情，vue-resource插件一样也能做到，而且vue-resource的API更为简洁。另外，vue-resource还提供了非常有用的inteceptor功能，使用inteceptor可以在请求前和请求后附加一些行为，比如使用inteceptor在ajax请求时显示loading界面。</p>
+<h3 id="vue-resource插件具有以下特点："><a href="#vue-resource插件具有以下特点：" class="headerlink" title="vue-resource插件具有以下特点："></a>vue-resource插件具有以下特点：</h3><h4 id="体积小"><a href="#体积小" class="headerlink" title="体积小"></a>体积小</h4><p>vue-resource非常小巧，在压缩以后只有大约12KB，服务端启用gzip压缩后只有4.5KB大小，这远比jQuery的体积要小得多。</p>
+<h4 id="支持主流的浏览器"><a href="#支持主流的浏览器" class="headerlink" title="支持主流的浏览器"></a>支持主流的浏览器</h4><p>和Vue.js一样，vue-resource除了不支持IE 9以下的浏览器，其他主流的浏览器都支持。</p>
+<h4 id="支持Promise-API和URI-Templates"><a href="#支持Promise-API和URI-Templates" class="headerlink" title="支持Promise API和URI Templates"></a>支持Promise API和URI Templates</h4><p>Promise是ES6的特性，Promise的中文含义为“先知”，Promise对象用于异步计算。<br>URI Templates表示URI模板，有些类似于ASP.NET MVC的路由模板。</p>
+<h4 id="支持拦截器"><a href="#支持拦截器" class="headerlink" title="支持拦截器"></a>支持拦截器</h4><p>拦截器是全局的，拦截器可以在请求发送前和发送请求后做一些处理。<br>拦截器在一些场景下会非常有用，比如请求发送前在headers中设置access_token，或者在请求失败时，提供共通的处理方式。</p>
+<blockquote>
+<p>关于vue-resource更详细的介绍:<br><a href="http://www.cnblogs.com/keepfool/p/5657065.html" target="_blank" rel="external">http://www.cnblogs.com/keepfool/p/5657065.html</a></p>
+</blockquote>
+<h3 id="获取数据"><a href="#获取数据" class="headerlink" title="获取数据"></a>获取数据</h3><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://opolpcrco.bkt.clouddn.com/17-5-16/9501908-file_1494946096345_332e.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>如图,Header组件里的商家数据，是通过异步请求后端的数据接口获得的，header组件就负责接受这样的数据并渲染 。在app.vue组件（header的父组件），通过发送一个AJAX请求去获取商家的相关数据，取回来的数据放进app.vue里的<code>&lt;header&gt;</code>标签,然后这些数据通过header组件里的prop属性设置一下后,数据就在header组件里,就可以调用这些数据来做我们想做的事情</p>
+<h2 id="父子组件间的通信"><a href="#父子组件间的通信" class="headerlink" title="父子组件间的通信"></a>父子组件间的通信</h2><p>组件意味着协同工作，通常父子组件会是这样的关系：组件 A 在它的模版中使用了组件 B 。它们之间必然需要相互通信：父组件要给子组件传递数据，子组件需要将它内部发生的事情告知给父组件。然而，在一个良好定义的接口中尽可能将父子组件解耦是很重要的。这保证了每个组件可以在相对隔离的环境中书写和理解，也大幅提高了组件的可维护性和可重用性。</p>
+<p>在 Vue.js 中，父子组件的关系可以总结为 props down, events up 。父组件通过 props 向下传递数据给子组件，子组件通过 events 给父组件发送消息。看看它们是怎么工作的。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://opolpcrco.bkt.clouddn.com/17-5-16/60285371-file_1494946329211_2f7c.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<h3 id="使用-Prop-传递数据"><a href="#使用-Prop-传递数据" class="headerlink" title="使用 Prop 传递数据"></a>使用 Prop 传递数据</h3><p>组件实例的作用域是孤立的。这意味着不能并且不应该在子组件的模板内直接引用父组件的数据。可以使用 props 把数据传给子组件。<br>prop 是父组件用来传递数据的一个自定义属性。子组件需要显式地用 props 选项声明 “prop”：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Vue.component(<span class="string">'child'</span>, &#123;</div><div class="line">  // 声明 props</div><div class="line">  props: [<span class="string">'message'</span>],</div><div class="line">  // 就像 data 一样，prop 可以用在模板内</div><div class="line">  // 同样也可以在 vm 实例中像 “this.message” 这样使用</div><div class="line">  template: <span class="string">'&lt;span&gt;&#123;&#123; message &#125;&#125;&lt;/span&gt;'</span></div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>然后向它传入一个普通字符串：</p>
+<blockquote>
+<child message="hello!"></child>
+
+</blockquote>
+<p>结果输出“hello”。</p>
+<p>回到项目中来</p>
+<p>首先我们需要给app.vue定义一个seller的对象：可以通过data()方法。在vue.js中，这个data属性是一个函数（可查看链接），因为组件是可以被复用的，如果定义一个对象然后修改某一个组件的话会影响另外的组件，所以这里定义成一个函数。这个函数return一个对象，对象里面有seller对象，先定为空，然后我们通过发送AJAX请求去拿到一个seller对象，然后send给它。这样就可以拿到seller对象的数据。</p>
+<p>Vue.js社区有个第三方插件：vue-resource，用来处理一些前后端请求数据交互的。</p>
+<p>示例：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  // GET /someUrl</div><div class="line">  this.<span class="variable">$http</span>.get(<span class="string">'/someUrl'</span>).then((response) =&gt; &#123;</div><div class="line">    // success callback</div><div class="line">  &#125;, (response) =&gt; &#123;</div><div class="line">    // error callback</div><div class="line">  &#125;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>同样的，需要在package.json添加它的依赖：<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://opolpcrco.bkt.clouddn.com/17-5-16/31398266-file_1494946430454_6e52.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure></p>
+<p>第三方插件import引用时需要注册，用Vue.use(vueResource)把这个注册。在main.js注册</p>
+<p>然后回到app.vue，在这里我们需要通过一个vue.resource去发送一个AJAX请求，需要在什么时序去发起呢？</p>
+<p>我们知道每个vue实例化的时候都有一个生命周期，其中有个钩子叫created().</p>
+<blockquote>
+<p>关于钩子：<br><a href="https://segmentfault.com/q/1010000004335505" target="_blank" rel="external">https://segmentfault.com/q/1010000004335505</a></p>
+<p>关于实例的生命周期：<br><a href="https://cn.vuejs.org/v2/guide/instance.html#实例生命周期" target="_blank" rel="external">https://cn.vuejs.org/v2/guide/instance.html#实例生命周期</a> </p>
+</blockquote>
+<p>这是它的一个生命周期钩子函数，就是一个vue实例被生成后调用这个函数。一个vue实例被生成后还要绑定到某个html元素上，之后还要进行编译，然后再插入到document中。每一个阶段都会有一个钩子函数，方便开发者在不同阶段处理不同逻辑。</p>
+<blockquote>
+<p>一般可以在created函数中调用ajax获取页面初始化所需的数据,如下图:</p>
+</blockquote>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://opolpcrco.bkt.clouddn.com/17-5-16/23922088-file_1494946519227_13a9.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>去chrome的network查看,看到请求已经发出去了<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://opolpcrco.bkt.clouddn.com/17-5-16/60399181-file_1494946751754_183e8.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure></p>
+<p>vue-resource就介绍完了，seller对象已经拿到，接下来就把seller对象传递给header组件，让header渲染即可。</p>
+<p>这里还有一个坑!!<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://opolpcrco.bkt.clouddn.com/17-5-16/41239334-file_1494946833155_1343.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure></p>
+<p>Vue-resource 1.0的时候,右侧的response就能直接拿到seller字段</p>
+<p>但是2.0时,resource封装的方法变了,需要response.body,才能拿到seller,不加body,只会拿到一个Object</p>
+<p>##</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-05-16T15:02:49.830Z" itemprop="dateUpdated">2017-05-16 23:02:49</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2017/05/16/web-app05/" target="_blank" rel="external">https://silkyer.github.io/2017/05/16/web-app05/</a>
+        
+    </div>
+    <footer>
+        <a href="https://silkyer.github.io">
+            <img src="/img/avatar.jpg" alt="SilkYer">
+            SilkYer
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://silkyer.github.io/2017/05/16/web-app05/&title=《Vue2.0仿外卖APP（五）》 — SilkYer's Blog&pic=https://silkyer.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://silkyer.github.io/2017/05/16/web-app05/&title=《Vue2.0仿外卖APP（五）》 — SilkYer's Blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://silkyer.github.io/2017/05/16/web-app05/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Vue2.0仿外卖APP（五）》 — SilkYer's Blog&url=https://silkyer.github.io/2017/05/16/web-app05/&via=https://silkyer.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://silkyer.github.io/2017/05/16/web-app05/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/05/16/web-app04/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Vue2.0仿外卖APP（四）</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+
+        
+    </ul>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p>
+            <span>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></span>
+            <span>SilkYer &copy; 2015 - 2017</span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://silkyer.github.io/2017/05/16/web-app05/&title=《Vue2.0仿外卖APP（五）》 — SilkYer's Blog&pic=https://silkyer.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://silkyer.github.io/2017/05/16/web-app05/&title=《Vue2.0仿外卖APP（五）》 — SilkYer's Blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://silkyer.github.io/2017/05/16/web-app05/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Vue2.0仿外卖APP（五）》 — SilkYer's Blog&url=https://silkyer.github.io/2017/05/16/web-app05/&via=https://silkyer.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://silkyer.github.io/2017/05/16/web-app05/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://silkyer.github.io/2017/05/16/web-app05/" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '不喜欢我了吗！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

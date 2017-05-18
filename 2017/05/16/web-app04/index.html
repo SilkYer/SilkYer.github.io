@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>Vue2.0仿外卖APP（四） | SilkYer&#39;s Blog | Write the code , Change the world</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="组建拆分先在static目录下引入reset.css 接着在index.html引入，并且设置移动端&amp;lt;meta&amp;gt;,viewport的 有时候由于eslint的检测功能,写js少一个冒号多一个空格都会频繁报错,这会让刚接触Vue或者对ES6不熟悉的人痛苦不堪,可以在上一节讲到的eslint相关配置处,把对应检测功能置零 如果不置零,下面这段代码就会报错:">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vue2.0仿外卖APP（四）">
+<meta property="og:url" content="https://silkyer.github.io/2017/05/16/web-app04/index.html">
+<meta property="og:site_name" content="SilkYer&#39;s Blog">
+<meta property="og:description" content="组建拆分先在static目录下引入reset.css 接着在index.html引入，并且设置移动端&amp;lt;meta&amp;gt;,viewport的 有时候由于eslint的检测功能,写js少一个冒号多一个空格都会频繁报错,这会让刚接触Vue或者对ES6不熟悉的人痛苦不堪,可以在上一节讲到的eslint相关配置处,把对应检测功能置零 如果不置零,下面这段代码就会报错:">
+<meta property="og:image" content="http://opolpcrco.bkt.clouddn.com/17-5-16/8069189-file_1494931134935_dde4.png">
+<meta property="og:image" content="http://opolpcrco.bkt.clouddn.com/17-5-16/98379974-file_1494931135057_9d64.png">
+<meta property="og:image" content="http://opolpcrco.bkt.clouddn.com/17-5-16/38681868-file_1494931189650_fbb5.png">
+<meta property="og:image" content="http://opolpcrco.bkt.clouddn.com/17-5-16/21628972-file_1494931295181_fb1e.png">
+<meta property="og:image" content="http://opolpcrco.bkt.clouddn.com/17-5-16/89956498-file_1494931304813_1fca.png">
+<meta property="og:image" content="http://opolpcrco.bkt.clouddn.com/17-5-16/77535721-file_1494931493990_c38e.png">
+<meta property="og:image" content="http://opolpcrco.bkt.clouddn.com/17-5-16/84253293-file_1494931494106_736.png">
+<meta property="og:image" content="http://opolpcrco.bkt.clouddn.com/17-5-16/94553020-file_1494931783933_caa1.png">
+<meta property="og:image" content="http://opolpcrco.bkt.clouddn.com/17-5-16/66883057-file_1494941644265_ac97.png">
+<meta property="og:image" content="http://opolpcrco.bkt.clouddn.com/17-5-16/51883552-file_1494944137711_dbca.png">
+<meta property="og:image" content="http://opolpcrco.bkt.clouddn.com/17-5-16/39849946-file_1494944343316_10e62.png">
+<meta property="og:image" content="http://opolpcrco.bkt.clouddn.com/17-5-16/56691572-file_1494944596411_c061.png">
+<meta property="og:image" content="http://opolpcrco.bkt.clouddn.com/17-5-16/9604161-file_1494944694524_d2a9.png">
+<meta property="og:updated_time" content="2017-05-16T14:25:16.451Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Vue2.0仿外卖APP（四）">
+<meta name="twitter:description" content="组建拆分先在static目录下引入reset.css 接着在index.html引入，并且设置移动端&amp;lt;meta&amp;gt;,viewport的 有时候由于eslint的检测功能,写js少一个冒号多一个空格都会频繁报错,这会让刚接触Vue或者对ES6不熟悉的人痛苦不堪,可以在上一节讲到的eslint相关配置处,把对应检测功能置零 如果不置零,下面这段代码就会报错:">
+<meta name="twitter:image" content="http://opolpcrco.bkt.clouddn.com/17-5-16/8069189-file_1494931134935_dde4.png">
+    
+        <link rel="alternate" type="application/atom+xml" title="SilkYer&#39;s Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">SilkYer</h5>
+          <a href="mailto:fpx1100@gmail.com" title="fpx1100@gmail.com" class="mail">fpx1100@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                文章
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/silkyer" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/silkyer" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/custom"  >
+                <i class="icon icon-lg icon-link"></i>
+                测试
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Vue2.0仿外卖APP（四）</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Vue2.0仿外卖APP（四）</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-05-16T10:34:07.647Z" itemprop="datePublished" class="page-time">
+  2017-05-16
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#组建拆分"><span class="post-toc-number">1.</span> <span class="post-toc-text">组建拆分</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Vue-router"><span class="post-toc-number">2.</span> <span class="post-toc-text">Vue-router</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1像素border实现"><span class="post-toc-number">3.</span> <span class="post-toc-text">1像素border实现</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-web-app04"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Vue2.0仿外卖APP（四）</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-05-16 18:34:07" datetime="2017-05-16T10:34:07.647Z"  itemprop="datePublished">2017-05-16</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h2 id="组建拆分"><a href="#组建拆分" class="headerlink" title="组建拆分"></a>组建拆分</h2><p>先在static目录下引入reset.css</p>
+<p>接着在index.html引入，并且设置移动端<code>&lt;meta&gt;</code>,viewport的</p>
+<p>有时候由于eslint的检测功能,写js少一个冒号多一个空格都会频繁报错,这会让刚接触Vue或者对ES6不熟悉的人痛苦不堪,可以在上一节讲到的eslint相关配置处,把对应检测功能置零</p>
+<p>如果不置零,下面这段代码就会报错:<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://opolpcrco.bkt.clouddn.com/17-5-16/8069189-file_1494931134935_dde4.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure><br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://opolpcrco.bkt.clouddn.com/17-5-16/98379974-file_1494931135057_9d64.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure></p>
+<p>所以要到eslintrc.js去设置</p>
+<p>现在的App.vue如下：<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://opolpcrco.bkt.clouddn.com/17-5-16/38681868-file_1494931189650_fbb5.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure><br>然后我们编写组件来替换那三个区块。</p>
+<p>创建header组件<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://opolpcrco.bkt.clouddn.com/17-5-16/21628972-file_1494931295181_fb1e.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure><br>将header引入到App.vue里面(注册)：<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://opolpcrco.bkt.clouddn.com/17-5-16/89956498-file_1494931304813_1fca.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure><br>Components后面要有空格。</p>
+<p>这里还要安装一个stylus-loader依赖，不然会报错。</p>
+<p>这里提供一个依赖包的安装方法：到package.json，在里面添加所需要的最新版本的包，然后再cnpm install ，这样就可以添加到node_modules里面了，运行cnpm run dev。<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://opolpcrco.bkt.clouddn.com/17-5-16/77535721-file_1494931493990_c38e.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure></p>
+<p>基本的组件结构如下:<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://opolpcrco.bkt.clouddn.com/17-5-16/84253293-file_1494931494106_736.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure></p>
+<h2 id="Vue-router"><a href="#Vue-router" class="headerlink" title="Vue-router"></a>Vue-router</h2><p>因为在单页应用中，内容区块有三部分，所以这时候要用到路由vue-router</p>
+<p><a href="http://router.vuejs.org/zh-cn/installation.html" target="_blank" rel="external">http://router.vuejs.org/zh-cn/installation.html</a></p>
+<p>同样通过package.json来安装。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://opolpcrco.bkt.clouddn.com/17-5-16/94553020-file_1494931783933_caa1.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>vue-router的用法：<a href="http://router.vuejs.org/zh-cn/essentials/getting-started.html" target="_blank" rel="external">http://router.vuejs.org/zh-cn/essentials/getting-started.html</a></p>
+<p>可以参考下面两个链接:</p>
+<p>官网的写法：<a href="http://router.vuejs.org/zh-cn/essentials/getting-started.html" target="_blank" rel="external">http://router.vuejs.org/zh-cn/essentials/getting-started.html</a></p>
+<p>参考：<a href="https://segmentfault.com/q/1010000007929093/a-1020000007929260" target="_blank" rel="external">https://segmentfault.com/q/1010000007929093/a-1020000007929260</a><br>(PS: 链接都是个人觉得在遇到困难时很好的解决思路,所以放上来供大家参考)</p>
+<p>如果使用模块化机制编程，导入Vue和VueRouter，要调用 Vue.use(VueRouter)。在通过use()这个方法，相当于安装插件。</p>
+<p>参照官网给的vue-router的过程：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">// 如果使用模块化机制编程，導入Vue和VueRouter，要调用 Vue.use(VueRouter)</div><div class="line"></div><div class="line">// 1. 定义（路由）组件。</div><div class="line">// 可以从其他文件 import 进来</div><div class="line">const Foo = &#123; template: <span class="string">'&lt;div&gt;foo&lt;/div&gt;'</span> &#125;</div><div class="line">const Bar = &#123; template: <span class="string">'&lt;div&gt;bar&lt;/div&gt;'</span> &#125;</div><div class="line"></div><div class="line">// 2. 定义路由</div><div class="line">// 每个路由应该映射一个组件。 其中<span class="string">"component"</span> 可以是</div><div class="line">// 通过 Vue.extend() 创建的组件构造器，</div><div class="line">// 或者，只是一个组件配置对象。</div><div class="line">// 我们晚点再讨论嵌套路由。</div><div class="line">const routes = [</div><div class="line">  &#123; path: <span class="string">'/foo'</span>, component: Foo &#125;,</div><div class="line">  &#123; path: <span class="string">'/bar'</span>, component: Bar &#125;</div><div class="line">]</div><div class="line"></div><div class="line">// 3. 创建 router 实例，然后传 `routes` 配置</div><div class="line">// 你还可以传别的配置参数, 不过先这么简单着吧。</div><div class="line">const router = new VueRouter(&#123;</div><div class="line">  routes // （缩写）相当于 routes: routes</div><div class="line">&#125;)</div><div class="line"></div><div class="line">// 4. 创建和挂载根实例。</div><div class="line">// 记得要通过 router 配置参数注入路由，</div><div class="line">// 从而让整个应用都有路由功能</div><div class="line">const app = new Vue(&#123;</div><div class="line">  router</div><div class="line">&#125;).<span class="variable">$mount</span>(<span class="string">'#app'</span>)</div><div class="line"></div><div class="line">// 现在，应用已经启动了！</div></pre></td></tr></table></figure>
+<p>所以,main.js是这样的:<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://opolpcrco.bkt.clouddn.com/17-5-16/66883057-file_1494941644265_ac97.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure></p>
+<h2 id="1像素border实现"><a href="#1像素border实现" class="headerlink" title="1像素border实现"></a>1像素border实现</h2><p>border-bottom: 1px solid rgba(7, 17, 27, 0.1)</p>
+<p>直接在.tab加这句话可以实现，但是在移动端看到的就不是这样的，因为手机端有个dpr的概念,电脑设置的1px不代表所有手机里面显示的都是1px:<br><a href="http://mobile.51cto.com/web-484304.htm" target="_blank" rel="external">http://mobile.51cto.com/web-484304.htm</a></p>
+<p>总的来说就是: 想要在dpr=2的设备下显示1px,对于css而言,可认为border: 0.5px,因为这是retina下(dpr=2)下能显示的最小单位。</p>
+<p>然而，无奈并不是所有手机浏览器都能识别border: 0.5px;，ios7以下，android等其他系统里，0.5px会被当成为0px处理，那么如何实现这0.5px呢？</p>
+<p>由于项目中多处用到border1px,所以单独拿出来放到一个通用文件里: mixin.styl<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://opolpcrco.bkt.clouddn.com/17-5-16/51883552-file_1494944137711_dbca.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure></p>
+<p>这只是通用文件,真正实现1px,关键是检测出设备dpr,从而进行缩放</p>
+<p>没错就是媒体查询@media</p>
+<p>把检测dpr这个功能单独隔离出一个base.styl<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://opolpcrco.bkt.clouddn.com/17-5-16/39849946-file_1494944343316_10e62.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure></p>
+<p>所以为了使用border1px,则需要在使用的那个组件,同时@import (base.styl)和(mixin.styl),为了简洁,我们把这些需要单独引入的css文件,再放入一个总的styl文件: index.styl<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://opolpcrco.bkt.clouddn.com/17-5-16/56691572-file_1494944596411_c061.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure></p>
+<p>至此,每一个需要用到border1px的地方,只需要:<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://opolpcrco.bkt.clouddn.com/17-5-16/9604161-file_1494944694524_d2a9.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure></p>
+<p>总结一像素的实现：伪类+缩放（用一个class）</p>
+<p>这样基本框架已经搭建好了，接下来就来开发组件。</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-05-16T14:25:16.451Z" itemprop="dateUpdated">2017-05-16 22:25:16</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2017/05/16/web-app04/" target="_blank" rel="external">https://silkyer.github.io/2017/05/16/web-app04/</a>
+        
+    </div>
+    <footer>
+        <a href="https://silkyer.github.io">
+            <img src="/img/avatar.jpg" alt="SilkYer">
+            SilkYer
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://silkyer.github.io/2017/05/16/web-app04/&title=《Vue2.0仿外卖APP（四）》 — SilkYer's Blog&pic=https://silkyer.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://silkyer.github.io/2017/05/16/web-app04/&title=《Vue2.0仿外卖APP（四）》 — SilkYer's Blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://silkyer.github.io/2017/05/16/web-app04/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Vue2.0仿外卖APP（四）》 — SilkYer's Blog&url=https://silkyer.github.io/2017/05/16/web-app04/&via=https://silkyer.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://silkyer.github.io/2017/05/16/web-app04/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/05/16/web-app05/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Vue2.0仿外卖APP（五）</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/05/16/web-app03/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Vue2.0仿外卖APP（三）</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+
+        
+    </ul>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p>
+            <span>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></span>
+            <span>SilkYer &copy; 2015 - 2017</span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://silkyer.github.io/2017/05/16/web-app04/&title=《Vue2.0仿外卖APP（四）》 — SilkYer's Blog&pic=https://silkyer.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://silkyer.github.io/2017/05/16/web-app04/&title=《Vue2.0仿外卖APP（四）》 — SilkYer's Blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://silkyer.github.io/2017/05/16/web-app04/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Vue2.0仿外卖APP（四）》 — SilkYer's Blog&url=https://silkyer.github.io/2017/05/16/web-app04/&via=https://silkyer.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://silkyer.github.io/2017/05/16/web-app04/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://silkyer.github.io/2017/05/16/web-app04/" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '不喜欢我了吗！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
