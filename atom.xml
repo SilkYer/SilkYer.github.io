@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://silkyer.github.io/"/>
-  <updated>2017-05-25T14:28:00.570Z</updated>
+  <updated>2017-05-29T15:58:37.551Z</updated>
   <id>https://silkyer.github.io/</id>
   
   <author>
@@ -16,23 +16,100 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>没得加班 伐开心</title>
+    <link href="https://silkyer.github.io/2017/05/29/0529summary/"/>
+    <id>https://silkyer.github.io/2017/05/29/0529summary/</id>
+    <published>2017-05-29T14:16:50.916Z</published>
+    <updated>2017-05-29T15:58:37.551Z</updated>
+    
+    <content type="html"><![CDATA[<p>打算加到九点半 突然被家里人叫回去还以为有什么事 一个多小时到家了发现 原来只是希望我能回来休息一会..</p>
+<p>我又哪敢跟他们说 是担心自己项目做不完 说了也白操心</p>
+<p>废话不多说总结一波</p>
+<h3 id="element-ui"><a href="#element-ui" class="headerlink" title="element.ui"></a>element.ui</h3><p>例子如下:<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://opolpcrco.bkt.clouddn.com/17-5-29/96594111.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure></p>
+<p>实现点1 四消失,点2 四出现的效果</p>
+<p>曾经使用element.ui框架 用<code>&lt;el-radio-group&gt;</code>实现选项框 然而有两个问题:</p>
+<p>1、<code>&lt;el-radio&gt;</code>的源码实际上除了外部一个<code>&lt;div&gt;</code>外还封装多了一层<code>&lt;slot&gt;</code>在里面,所以在<code>&lt;el-radio&gt;</code>上绑定点击事件,会出现点击两次的情况<br>(具体如何在源码层解决这个问题..尝试过用<code>if(!event_constructed){}</code>,然而要么一次不点击要么点击两次 很头疼 日后有空再说= = 当下以实现业务逻辑为主</p>
+<p>2、在<code>&lt;el-radio&gt;</code>内无法绑定<code>v-show</code>,需要额外包一个div,在新div内使用<code>v-show</code>,这样就导致<code>&lt;el-radio&gt;</code>一些margin和其他elemetn的radio有不同 要修改样式 太麻烦了</p>
+<p>这两点让我直接放弃了element.ui,乖乖用回bootstrap</p>
+<p>(虽然之前从没用过bootstrap..</p>
+<p>bootstrap用的是label标签包input,多选和单选框只需要在type=checkbox/radio中选择就好,没有ele封装的那么多,但是点击事件依然要放在input层,放在label层依然会出现两次点击噢~</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://opolpcrco.bkt.clouddn.com/17-5-29/67913203.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<h3 id="第一次接手crm的issue"><a href="#第一次接手crm的issue" class="headerlink" title="第一次接手crm的issue"></a>第一次接手crm的issue</h3><p>好激动!!!第一次被指派assignee,take over gitlab上的issue,虽然只是超级简单的改模板..不过也对找路径更加熟练了</p>
+<blockquote>
+<p>总结出一个方法： 如果url上的地址 找不到对应的views 那就去module里面 输入中文 找到相应路由 里面就有详细路径</p>
+<p>如果想查看数据的那个view刚好没数据 可以F12去response里拿相应的数据,找到你想要塞数据的弄个view对应的controller,在ng封装的ajax里面把假数据放进去 这样就可以达到效果</p>
+</blockquote>
+<h3 id="git"><a href="#git" class="headerlink" title="git"></a>git</h3><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://opolpcrco.bkt.clouddn.com/17-5-29/11861289.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<center>remote XXXX not have locally</center><br>说的是 远端和本地的版本不一致<br><br>被老大告知 git pull –rebase即可<br><br>可是阮一峰上面说 用rebase后面还要加语句：<br><br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://opolpcrco.bkt.clouddn.com/17-5-29/16064815.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure><br><br>懵逼了 总之，以后出现这种远端和本地版本不一致 使用git pull –rebase就好<br><br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://opolpcrco.bkt.clouddn.com/17-5-29/64043200.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure><br><br><center>pls commit before switch</center>
+
+<p>提示说，怕你丢失文件，先缓存一下</p>
+<p>所以执行：</p>
+<p>git stash</p>
+<p>git pull</p>
+<p>之后就可以切换分支啦: git checkout -b dev origin/dev</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://opolpcrco.bkt.clouddn.com/17-5-29/81617236.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>P.S : git和webpack..真是把我操 碎了心</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;打算加到九点半 突然被家里人叫回去还以为有什么事 一个多小时到家了发现 原来只是希望我能回来休息一会..&lt;/p&gt;
+&lt;p&gt;我又哪敢跟他们说 是担心自己项目做不完 说了也白操心&lt;/p&gt;
+&lt;p&gt;废话不多说总结一波&lt;/p&gt;
+&lt;h3 id=&quot;element-ui&quot;&gt;&lt;a href=&quot;
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
     <title>工作总结</title>
     <link href="https://silkyer.github.io/2017/05/25/0525summary/"/>
     <id>https://silkyer.github.io/2017/05/25/0525summary/</id>
     <published>2017-05-25T14:13:51.281Z</published>
-    <updated>2017-05-25T14:28:00.570Z</updated>
+    <updated>2017-05-29T14:15:58.556Z</updated>
     
     <content type="html"><![CDATA[<h2 id="关于git"><a href="#关于git" class="headerlink" title="关于git"></a>关于git</h2><p>2017-5-25 20:20:40</p>
 <p>特么 终于git上去了</p>
 <p>今天的git出现了各种错误 搞了半天 总结如下：</p>
 <p>个人情况是：别人已经给你开好了仓库，所以只需要想办法把本地文件上传到仓库就好</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="http://opolpcrco.bkt.clouddn.com/17-5-25/805324.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
 <center>（通过SSH上传下载）</center>
 
 <p>1、复制地址 然后去你想要放置的本地仓库目录 右键 点出git bash</p>
