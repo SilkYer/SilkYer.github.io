@@ -32,7 +32,7 @@
 <meta property="og:image" content="http://opolpcrco.bkt.clouddn.com/17-5-29/16064815.jpg">
 <meta property="og:image" content="http://opolpcrco.bkt.clouddn.com/17-5-29/64043200.jpg">
 <meta property="og:image" content="http://opolpcrco.bkt.clouddn.com/17-5-29/81617236.jpg">
-<meta property="og:updated_time" content="2017-05-29T15:58:37.551Z">
+<meta property="og:updated_time" content="2017-05-29T16:02:16.179Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="没得加班 伐开心">
 <meta name="twitter:description" content="打算加到九点半 突然被家里人叫回去还以为有什么事 一个多小时到家了发现 原来只是希望我能回来休息一会.. 我又哪敢跟他们说 是担心自己项目做不完 说了也白操心 废话不多说总结一波 element.ui例子如下:">
@@ -195,7 +195,7 @@
             </figure></p>
 <p>实现点1 四消失,点2 四出现的效果</p>
 <p>曾经使用element.ui框架 用<code>&lt;el-radio-group&gt;</code>实现选项框 然而有两个问题:</p>
-<p>1、<code>&lt;el-radio&gt;</code>的源码实际上除了外部一个<code>&lt;div&gt;</code>外还封装多了一层<code>&lt;slot&gt;</code>在里面,所以在<code>&lt;el-radio&gt;</code>上绑定点击事件,会出现点击两次的情况<br>(具体如何在源码层解决这个问题..尝试过用<code>if(!event_constructed){}</code>,然而要么一次不点击要么点击两次 很头疼 日后有空再说= = 当下以实现业务逻辑为主</p>
+<p>1、<code>&lt;el-radio&gt;</code>的源码实际上除了外部一个<code>&lt;div&gt;</code>外还封装多了一层<code>&lt;slot&gt;</code>在里面,所以在<code>&lt;el-radio&gt;</code>上绑定点击事件,会出现点击两次的情况<br>(具体如何在源码层解决这个问题..尝试过用<code>if(!event_constructed){}</code>,然而要么一次不点击要么点击两次 很头疼 后来也试过阻止冒泡也没用(貌似这个两次点击不是因为冒泡?)日后有空再说= = 当下以实现业务逻辑为主</p>
 <p>2、在<code>&lt;el-radio&gt;</code>内无法绑定<code>v-show</code>,需要额外包一个div,在新div内使用<code>v-show</code>,这样就导致<code>&lt;el-radio&gt;</code>一些margin和其他elemetn的radio有不同 要修改样式 太麻烦了</p>
 <p>这两点让我直接放弃了element.ui,乖乖用回bootstrap</p>
 <p>(虽然之前从没用过bootstrap..</p>
@@ -253,7 +253,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2017-05-29T15:58:37.551Z" itemprop="dateUpdated">2017-05-29 23:58:37</time>
+    最后更新时间：<time datetime="2017-05-29T16:02:16.179Z" itemprop="dateUpdated">2017-05-30 00:02:16</time>
 </span><br>
 
 
